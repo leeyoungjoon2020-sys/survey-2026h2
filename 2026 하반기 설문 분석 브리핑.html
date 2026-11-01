@@ -1,0 +1,580 @@
+<title>2026 하반기 설문 분석 브리핑</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: Tourlinks 종합업무회의 form — gradient header band with "title ." + red dot and logo, grey canvas, white summary box with orange heading, grey rounded cards with blue pills */
+:root{
+  --band-a:#4d4376; --band-b:#2e5576;
+  --canvas:#e7eaee; --paper:#ffffff; --card:#eeeff1; --card-line:#c8ccd2; --box-line:#bfbfbf;
+  --ink:#1e232e; --ink-2:#4a5260; --muted:#6b7380;
+  --orange:#d94a22; --dot:#e71324; --blue:#0e6fed; --pill:#d8e7fc; --pill-line:#c1dafb;
+  --bar-muted:#c4ccd8; --bar-2:#e8a34a; --neg:#d6332a; --neg-soft:#fde5e2; --pos:#17865a; --pos-soft:#e0f3ea;
+  --font:'인터파크고딕 M','InterparkGothicM','Noto Sans KR','Malgun Gothic','Apple SD Gothic Neo',system-ui,sans-serif;
+  --radius:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --canvas:#141922; --paper:#1c2330; --card:#222a38; --card-line:#323d50; --box-line:#3a4559;
+  --ink:#e9edf3; --ink-2:#b6bfcc; --muted:#8792a3;
+  --orange:#ff7a4d; --dot:#ff4d5a; --blue:#6aa8ff; --pill:#1d3354; --pill-line:#2b4a78;
+  --bar-muted:#3b4658; --bar-2:#e3a75a; --neg:#ff6b61; --neg-soft:#3a2023; --pos:#4fcf94; --pos-soft:#173328; color-scheme:dark}
+  :root:not([data-theme="light"]) .rmx td.lo{background:#3a2a20;color:#ffa070}}
+:root[data-theme="dark"] .rmx td.lo{background:#3a2a20;color:#ffa070}
+:root[data-theme="dark"]{
+  --canvas:#141922; --paper:#1c2330; --card:#222a38; --card-line:#323d50; --box-line:#3a4559;
+  --ink:#e9edf3; --ink-2:#b6bfcc; --muted:#8792a3;
+  --orange:#ff7a4d; --dot:#ff4d5a; --blue:#6aa8ff; --pill:#1d3354; --pill-line:#2b4a78;
+  --bar-muted:#3b4658; --bar-2:#e3a75a; --neg:#ff6b61; --neg-soft:#3a2023; --pos:#4fcf94; --pos-soft:#173328; color-scheme:dark}
+html[lang="zh"]{--font:'인터파크고딕 M','Noto Sans SC','PingFang SC','Microsoft YaHei','Noto Sans KR',system-ui,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{font-family:var(--font);background:var(--canvas);color:var(--ink);font-size:15px;line-height:1.6;overflow-x:hidden;word-break:keep-all}
+html[lang="en"] body,html[lang="zh"] body{word-break:normal;overflow-wrap:break-word}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--band-a)}
+.num{font-variant-numeric:tabular-nums}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+h1,h2,h3{margin:0;text-wrap:balance} p{margin:0}
+
+/* header band */
+.hdr{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);z-index:50}
+.band{position:relative;height:64px;display:flex;align-items:center;gap:14px;
+  padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));
+  background:linear-gradient(100deg,var(--band-a),var(--band-b));color:#fff;box-shadow:0 2px 10px rgba(20,25,50,.25)}
+.band .ttl{font-size:clamp(17px,2vw,24px);font-weight:900;letter-spacing:-.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1}
+.band .ttl .dot{color:#ff3344;margin-left:4px}
+.band .ttl .sep{opacity:.8;margin:0 6px}
+.band .tools{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.band .logo{height:18px;width:auto;display:block;margin-left:6px}
+.lang{display:flex;gap:2px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:3px}
+.lang button{border:0;background:transparent;color:rgba(255,255,255,.85);font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.lang button[aria-pressed="true"]{background:#fff;color:#2e3f6b}
+.pbtn{border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;padding:5px 13px;font-size:12.5px;font-weight:700;white-space:nowrap}
+.search{position:relative}
+.search input{width:220px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;border-radius:999px;padding:6px 12px 6px 32px;font:inherit;font-size:13px}
+.search input::placeholder{color:rgba(255,255,255,.7)}
+.search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:rgba(255,255,255,.8);pointer-events:none}
+.results{position:absolute;right:0;top:calc(100% + 8px);width:min(380px,calc(100vw - 32px));max-height:min(420px,70vh);overflow:auto;background:var(--paper);border:1px solid var(--card-line);border-radius:10px;box-shadow:0 14px 40px rgba(20,25,50,.25);padding:6px;color:var(--ink)}
+.results button{display:block;width:100%;text-align:left;border:0;background:transparent;border-radius:8px;padding:9px 10px}
+.results button:hover,.results button.sel{background:var(--pill)}
+.results .rt{font-size:14px;font-weight:700;display:flex;gap:8px;align-items:baseline}
+.results .rt .pg{font-size:11px;color:var(--orange);font-weight:900}
+.results .rs{font-size:12px;color:var(--muted);margin-top:2px}
+.results mark{background:transparent;color:var(--blue);font-weight:700}
+.results .none{padding:12px;font-size:13px;color:var(--muted)}
+.progress{position:absolute;bottom:-3px;left:0;height:3px;background:var(--dot);width:0;transition:width .2s}
+.regbar{display:flex;align-items:center;gap:6px;overflow-x:auto;background:var(--paper);border-bottom:1px solid var(--card-line);padding-block:7px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));scrollbar-width:none}
+.regbar .lbl{font-size:12.5px;font-weight:700;color:var(--ink-2);white-space:nowrap;margin-right:4px}
+.regbar button{border:1px solid var(--card-line);background:var(--paper);border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:700;color:var(--ink-2);white-space:nowrap;display:flex;gap:5px;align-items:baseline}
+.regbar button small{font-size:11px;color:var(--muted);font-weight:500}
+.regbar button[aria-selected="true"]{background:#2e3f6b;border-color:#2e3f6b;color:#fff}
+.regbar button[aria-selected="true"] small{color:rgba(255,255,255,.75)}
+.regbar .hint{font-size:12px;color:var(--muted);white-space:nowrap;margin-left:6px}
+.rview{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin-top:10px;font-size:13px;background:var(--pill);border:1px solid var(--pill-line);color:var(--ink);border-radius:8px;padding:7px 12px}
+.rview b{color:var(--blue)}
+.rview.all{background:var(--canvas);border-color:var(--card-line);color:var(--ink-2)}
+.hero .mgr{margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.2)}
+.hero .mgr .mv{font-size:28px;font-weight:900;letter-spacing:-.02em}
+.hero .mgr .mv small{font-size:13px;font-weight:700;margin-left:4px;color:rgba(255,255,255,.85)}
+.yr.m .b i{background:#e8a34a}
+
+/* nav */
+.dots{position:fixed;right:max(18px,calc(env(safe-area-inset-right,0px) + 10px));top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:11px}
+.dots a{display:block;width:9px;height:9px;border-radius:50%;background:var(--bar-muted);position:relative;transition:transform .2s,background .2s}
+.dots a.active{background:var(--orange);transform:scale(1.4)}
+.dots a span{position:absolute;right:18px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:12px;background:var(--band-b);color:#fff;padding:4px 10px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .15s}
+.dots a:hover span,.dots a:focus-visible span{opacity:1}
+.pager{position:fixed;right:max(18px,calc(env(safe-area-inset-right,0px) + 10px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:center;gap:6px;background:var(--paper);border:1px solid var(--card-line);border-radius:999px;padding:4px 6px 4px 14px;box-shadow:0 6px 18px rgba(20,25,50,.12)}
+.pager .count{font-size:12px;color:var(--muted);font-weight:700;min-width:38px}
+.pager button{width:30px;height:30px;border-radius:50%;border:0;background:var(--canvas);display:grid;place-items:center}
+.pager svg{width:16px;height:16px}
+
+/* slides */
+.slide{min-height:100vh;padding-block:132px 64px;padding-left:max(56px,env(safe-area-inset-left,0px));padding-right:max(56px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;justify-content:center;position:relative}
+.wrap{max-width:1200px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.sbox{background:var(--paper);border:1px solid var(--box-line);padding:16px 22px 18px}
+.sbox h2{font-size:clamp(19px,2.1vw,25px);font-weight:700;color:var(--orange);line-height:1.4;letter-spacing:-.02em}
+.sbox ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:3px}
+.sbox li{font-size:15px;color:var(--ink);line-height:1.6}
+.sbox li::before{content:"· ";color:var(--muted)}
+.grid{display:grid;gap:14px}
+.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+.kpi{background:var(--paper);border:1px solid var(--card-line);border-radius:var(--radius);padding:14px 16px}
+.kpi .l{font-size:12.5px;color:var(--muted);font-weight:500}
+.kpi .v{font-size:clamp(26px,2.7vw,34px);font-weight:900;color:var(--blue);letter-spacing:-.02em;line-height:1.2;margin:4px 0 2px}
+.kpi.warn .v{color:var(--orange)}
+.kpi .v small{font-size:.5em;font-weight:700;margin-left:2px;color:var(--ink-2)}
+.kpi .d{font-size:12.5px;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+.cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cards.wide{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}
+.card{background:var(--card);border:1px solid var(--card-line);border-radius:var(--radius);padding:14px 16px 16px;min-width:0}
+.card h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.card.full{grid-column:1/-1}
+.pill{display:inline-block;background:var(--pill);border:1px solid var(--pill-line);color:var(--blue);font-size:12px;font-weight:500;border-radius:999px;padding:1px 12px;margin-bottom:10px}
+.note{font-size:13px;color:var(--ink-2);background:var(--paper);border:1px solid var(--card-line);border-radius:8px;padding:10px 12px;margin-top:12px}
+.wow{display:inline-flex;font-size:11.5px;font-weight:700;padding:0 8px;border-radius:999px;white-space:nowrap}
+.wow.up{background:var(--pos-soft);color:var(--pos)} .wow.dn{background:var(--neg-soft);color:var(--neg)} .wow.fl{background:var(--canvas);color:var(--muted)}
+
+/* bars */
+.cbar,.cmp{display:grid;grid-template-columns:minmax(0,180px) 1fr auto;gap:10px;align-items:center;font-size:13px;padding:4px 0}
+.cbar .b{height:11px;background:var(--paper);border-radius:6px;overflow:hidden;border:1px solid var(--card-line)}
+.cbar .b i{display:block;height:100%;background:var(--bar-muted)}
+.cbar.hl .b i{background:var(--blue)} .cbar.hot .b i{background:var(--orange)}
+.cbar .n,.cmp .n{text-align:right;color:var(--ink-2);white-space:nowrap}
+.cmp .bars{display:flex;flex-direction:column;gap:3px}
+.cmp .bars i{display:block;height:7px;border-radius:4px;min-width:2px}
+.cmp .bars i.a{background:var(--bar-muted)} .cmp .bars i.b{background:var(--blue)} .cmp .bars i.m{background:var(--bar-2)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--ink-2);margin:-4px 0 6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.cols{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:5px;align-items:end;height:180px}
+.cols div{display:flex;flex-direction:column;align-items:center;justify-content:end;gap:3px;height:100%;font-size:11px;color:var(--ink-2)}
+.cols i{display:block;width:72%;border-radius:3px 3px 0 0;background:var(--bar-muted)}
+.cols i.hl{background:var(--blue)} .cols i.alt{background:var(--orange)}
+.mini{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.mini div{background:var(--paper);border:1px solid var(--card-line);border-radius:8px;padding:10px 12px}
+.mini b{display:block;font-size:20px;font-weight:900;color:var(--blue)}
+.mini span{font-size:12px;color:var(--muted)}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px;background:var(--paper)}
+th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--card-line);white-space:nowrap}
+th{background:#2e3f6b;color:#fff;font-weight:700;font-size:12.5px}
+th:first-child,td:first-child{text-align:left}
+tr.hl td{background:var(--pill)}
+td.muted{color:var(--muted)}
+.list{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.list li{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;font-size:14px}
+.list .pill{margin:0}
+.takes{grid-template-columns:repeat(2,minmax(0,1fr))}
+.take h3{font-size:16px} .take p{font-size:14px;color:var(--ink-2)}
+.take a{font-size:13px;color:var(--blue);font-weight:700;text-decoration:none;display:inline-block;margin-top:6px}
+.acts{grid-template-columns:repeat(3,minmax(0,1fr))}
+.act .hd{display:flex;justify-content:space-between;gap:8px;align-items:start}
+.act .tag{font-size:11px;font-weight:700;border-radius:999px;padding:1px 9px;white-space:nowrap;background:var(--paper);border:1px solid var(--card-line);color:var(--ink-2)}
+.act .tag.neg{background:var(--neg-soft);border-color:transparent;color:var(--neg)}
+.act p{font-size:13.5px;color:var(--ink-2)}
+.act .who{font-size:12px;color:var(--muted);margin-top:8px;padding-top:6px;border-top:1px dashed var(--card-line)}
+svg.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart text{font-family:var(--font);fill:var(--ink-2);font-size:12px}
+.chart .t-strong{fill:var(--ink);font-weight:700}
+.chart .t-muted{fill:var(--muted)}
+.chart .grid-l{stroke:var(--card-line);stroke-width:1}
+.foot{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:var(--muted);margin-top:4px}
+.foot .tags{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.foot .tags button{border:1px dashed var(--card-line);background:transparent;border-radius:999px;padding:0 9px;font-size:11.5px;color:var(--muted)}
+.foot .tags button:hover{color:var(--blue);border-color:var(--blue)}
+.foot .pg{font-weight:700}
+.slide.hit .sbox{animation:hit 1.4s ease}
+@keyframes hit{20%{box-shadow:0 0 0 5px rgba(231,19,36,.25)}100%{box-shadow:0 0 0 0 rgba(231,19,36,0)}}
+.src{font-size:12px;color:var(--muted)}
+
+/* hover detail */
+.tip{position:fixed;z-index:80;max-width:300px;background:#1f2a48;color:#fff;font-size:12.5px;line-height:1.55;border-radius:8px;padding:8px 11px;box-shadow:0 10px 28px rgba(10,15,35,.3);pointer-events:none;white-space:pre-line}
+.tip b{color:#ffd28a}
+[data-tip]{cursor:help}
+.cbar:hover .b i,.cbar:focus .b i{filter:brightness(1.12)}
+.cbar:hover,.cmp:hover,.cbar:focus,.cmp:focus{background:rgba(14,111,237,.06);border-radius:6px;outline:none}
+.cols div:hover i,.cols div:focus i{filter:brightness(1.15)}
+.kpi:hover,.kpi:focus{border-color:var(--blue);outline:none}
+td[data-tip]:hover{outline:1px solid var(--blue);outline-offset:-1px}
+/* region comparison */
+.rtabs{display:flex;flex-wrap:wrap;gap:6px}
+.rtabs button{border:1px solid var(--card-line);background:var(--paper);border-radius:999px;padding:6px 14px;font-size:13.5px;font-weight:700;color:var(--ink-2);display:flex;gap:6px;align-items:baseline}
+.rtabs button small{font-size:11px;color:var(--muted);font-weight:500}
+.rtabs button[aria-selected="true"]{background:#2e3f6b;border-color:#2e3f6b;color:#fff}
+.rtabs button[aria-selected="true"] small{color:rgba(255,255,255,.75)}
+.rmx th,.rmx td{text-align:right;padding:6px 9px}
+.rmx th:first-child,.rmx td:first-child{text-align:left}
+.rmx td.hi{background:var(--pill);color:var(--blue);font-weight:700}
+.rmx td.lo{background:#fdebe1;color:#b8461d;font-weight:700}
+.rmx th.cur{background:#d94a22}
+.rmx td.cur{box-shadow:inset 2px 0 0 #d94a22,inset -2px 0 0 #d94a22}
+.region-stack{display:flex;flex-direction:column;gap:14px}
+/* cover / end like the template's title slide */
+.cover,.end{background:linear-gradient(160deg,var(--band-a) 0%,#3f4a76 45%,var(--band-b) 100%);color:#fff}
+.cover .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+.cover .eyebrow{font-size:13px;font-weight:700;letter-spacing:.14em;color:rgba(255,255,255,.75)}
+.cover h1{font-size:clamp(34px,4.8vw,60px);font-weight:900;letter-spacing:-.04em;line-height:1.15;margin:14px 0}
+.cover h1 .dot,.end h2 .dot{color:#ff3344}
+.cover .sub{font-size:17px;color:rgba(255,255,255,.85)}
+.cover .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.cover .meta span{font-size:12.5px;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 12px}
+.cover .date{position:absolute;right:max(56px,env(safe-area-inset-right,0px));bottom:calc(36px + env(safe-area-inset-bottom,0px));font-size:18px;font-weight:700}
+.hero{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);border-radius:14px;padding:22px}
+.hero .l{font-size:13px;color:rgba(255,255,255,.75)}
+.hero .v{font-size:clamp(40px,4.6vw,58px);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin:4px 0 6px}
+.hero .v small{font-size:.38em;font-weight:700;margin-left:6px;color:rgba(255,255,255,.85)}
+.yr{display:grid;grid-template-columns:minmax(52px,auto) 1fr 40px;gap:10px;align-items:center;font-size:13px;margin-top:9px;color:rgba(255,255,255,.85)}
+.yr .b{height:9px;border-radius:5px;background:rgba(255,255,255,.18);overflow:hidden}
+.yr .b i{display:block;height:100%;background:rgba(255,255,255,.5)}
+.yr.now .b i{background:#ff6b5e} .yr.now{font-weight:700;color:#fff}
+.yr .n{text-align:right}
+.end .wrap{align-items:flex-start;gap:14px}
+.end h2{font-size:clamp(36px,4.5vw,56px);font-weight:900}
+.end p{color:rgba(255,255,255,.85);max-width:60ch}
+.end img{height:26px;width:auto}
+body.present .slide{padding-block:120px 48px}
+body.present .dots,body.present .pager{opacity:.35}
+
+@media (max-width:1100px){.search input{width:150px}.band .logo{display:none}}
+@media (max-width:1000px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.cards,.cards.wide,.takes,.acts{grid-template-columns:minmax(0,1fr)}.cover .wrap{grid-template-columns:minmax(0,1fr);gap:28px}}
+@media (max-width:720px){
+  .regbar .hint{display:none}
+  .band{height:auto;min-height:64px;flex-wrap:wrap;padding-block:8px;gap:8px}
+  .band .ttl{flex-basis:100%}
+  .band .tools{flex-wrap:wrap}
+  .search input{width:140px}
+  .pbtn,.dots{display:none}
+  .slide{min-height:auto;padding-block:176px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .cover{min-height:100vh}
+  .kpis,.mini{grid-template-columns:minmax(0,1fr)}
+  .cbar,.cmp{grid-template-columns:minmax(0,104px) 1fr auto}
+  .cover .date{position:static;margin-top:18px}
+}
+</style>
+
+<header class="hdr" id="hdr"><div class="band" id="band">
+  <div class="ttl" id="hdrTitle"></div>
+  <div class="tools">
+    <div class="search" role="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" type="search" autocomplete="off">
+      <div class="results" id="results" hidden></div>
+    </div>
+    <div class="lang" id="langSw" role="group" aria-label="Language">
+      <button type="button" data-lang="ko" lang="ko">한국어</button>
+      <button type="button" data-lang="en" lang="en">EN</button>
+      <button type="button" data-lang="zh" lang="zh">中文</button>
+    </div>
+    <button class="pbtn" id="presentBtn" type="button"></button>
+    <img class="logo" alt="TOURLINKS" src="data:image/png;base64,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">
+  </div>
+</div>
+<div class="regbar" id="regbar" role="tablist"></div>
+<div class="progress" id="progress"></div>
+</header>
+<nav class="dots" id="dots" aria-label="Slides"></nav>
+<div class="pager">
+  <span class="count num" id="count"></span>
+  <button type="button" id="prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></button>
+  <button type="button" id="next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+</div>
+<main id="main"></main>
+<div class="tip" id="tip" role="tooltip" hidden></div>
+
+<script>
+(function(){
+const LOGO="data:image/png;base64,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";
+const LANGS=['ko','en','zh']; let LANG='ko', LI=0;
+const t=s=>{const p=s.split('|');return p[LI]!=null?p[LI]:p[0];};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const $=id=>document.getElementById(id);
+const P=()=>[t('24상|H1 24|24上'),t('24하|H2 24|24下'),t('25상|H1 25|25上'),t('26하|H2 26|26下')];
+const M=i=>LI===1?['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][i]:(i+1)+(LI===2?'月':'월');
+
+const UI=()=>({prefix:t('설문 분석|Survey Analysis|问卷分析'),ph:t('요소 검색 (예: 일본, 무안, 만족도)|Search (e.g. Japan, Muan, satisfaction)|搜索要素（如：日本、务安、满意度）'),
+  present:t('발표 모드|Present|演示模式'),presentOff:t('발표 종료|Exit|退出演示'),none:t('에 해당하는 요소가 없습니다|: no matching section|：没有匹配的内容'),tagL:t('검색 태그|Tags|检索标签')});
+
+/* ---------- content (ko|en|zh in one string) ---------- */
+function C(){const pp=P();return [
+{id:'cover',cover:true,nav:t('표지|Cover|封面')},
+{id:'summary',member:1,nav:t('핵심 요약|Key findings|核心摘要'),
+ head:t('써본 회원은 만족합니다. 성장을 막는 것은 날짜·동반자·가격 장벽입니다|Members who travel with us are satisfied. Dates, companions and price hold growth back|体验过的会员很满意，阻碍增长的是日期、同伴和价格'),
+ lines:[t('회원 253명(유효) · 영업 매니저 63명 · 회원 10.13~10.22 / 매니저 10.07~10.28|253 valid member responses · 63 sales managers · members Oct 13–22 / managers Oct 7–28|有效会员问卷253份 · 销售经理63名 · 会员10.13~10.22 / 经理10.07~10.28'),
+        t('수요는 일본 · 고예산 · 짧은 예약 리드타임 쪽으로 움직이고 있습니다|Demand is moving toward Japan, bigger budgets and shorter booking lead times|需求正转向日本、更高预算和更短的预订提前期')],
+ kpis:[[t('투어링스 전반 만족도 (Top2)|Overall satisfaction (Top-2)|整体满意度（Top2）'),V('sat2').toFixed(1),'%',(ISR()?DL('sat2'):'<span class="wow fl">−1.0%p</span> ')+t('평균|Mean|均值')+' '+V('sat').toFixed(2)+t('점|/5|分')+(ISR()?'':' · '+t('25상|H1 25:|25上')+' 80.5% · 4.16'+t('점|/5|分'))],
+       [t('재이용 의향 (Top2)|Intent to rebook (Top-2)|再次预订意向（Top2）'),V('rebook2').toFixed(1),'%',DL('rebook2')+t('추천 의향|Would recommend|推荐意向')+' '+V('rec2').toFixed(1)+'%'],
+       [t('해외 골프 계획 보유|Planning an overseas golf trip|计划海外高尔夫旅行'),V('ovsplan').toFixed(1),'%',ISR()?DL('ovsplan'):'<span class="wow up">+14.6%p</span> '+t('25상 61.3%|H1 25: 61.3%|25上61.3%')],
+       [t('개선 요구 1위 · 동반 비회원 할인|#1 request: non-member companion discount|首要改进诉求：非会员同伴折扣'),V('nonmem').toFixed(1),'%',ISR()?DL('nonmem'):'<span class="wow dn">+7.3%p</span> '+t('25상 2위 → 1위|Was #2 in H1 25|25上第2位→第1位'),'warn']],
+ takes:[[t('럭셔리가 처음으로 선호 1위입니다|Luxury is the top style for the first time|豪华型首次成为最受欢迎类型'),t('상급 골프장+5성급 30.8%로 골프텔(25.7%)을 넘었고, 4박5일(53.4%)이 표준 기간이 됐습니다.|Premium courses with 5-star hotels (30.8%) passed golftels (25.7%), and 4 nights/5 days (53.4%) became the standard length.|高端球场+五星酒店（30.8%）超过球场酒店（25.7%），4晚5天（53.4%）成为标准行程。'),'style',t('해외 상품 선호 →|Product preferences →|海外产品偏好 →')],
+        [t('예약을 막는 건 가격보다 일정과 동반자입니다|Dates and companions block bookings more than price|阻碍预订的是日期和同伴，而非价格'),t('일정 불일치 58.9%, 가격 31.2%, 동반자 22.1%. 1~2명 단위 예약이 21%입니다.|Dates don’t fit 58.9%, price 31.2%, no companions 22.1%. 21% book for one or two people.|日期不合58.9%、价格31.2%、找不到同伴22.1%。1~2人预订占21%。'),'barrier',t('구매 장벽 →|Barriers →|购买障碍 →')],
+        [t('매니저는 자유골프 수요를 거의 보지 못합니다|Managers barely see demand for free-style golf|经理几乎没看到自由高尔夫需求'),t('양쪽 모두 럭셔리 1위지만 회원 30.8%, 매니저 23.8%입니다. 자유골프는 회원 16.6%, 매니저 3.2%입니다.|Both rank luxury first, but members 30.8% vs managers 23.8%. Free-style golf: members 16.6%, managers 3.2%.|双方都把豪华型排第一，但会员30.8%、经理23.8%。自由高尔夫：会员16.6%，经理3.2%。'),'cross',t('교차 분석 →|Cross-analysis →|交叉分析 →')],
+        [t('일본 수요가 3시점 연속 올랐습니다|Japan demand rose three surveys in a row|日本需求连续三期上升'),t('해외 희망 지역 일본 13.4% → 31.5% → 35.2%. 150만원 초과 예산도 45.5% → 54.6%입니다.|Japan as preferred destination: 13.4% → 31.5% → 35.2%. Budgets over ₩1.5M: 45.5% → 54.6%.|日本作为首选目的地：13.4%→31.5%→35.2%。预算超150万韩元：45.5%→54.6%。'),'trend',t('시계열 →|Time series →|时间序列 →')]],
+ tags:t('요약 핵심 만족도 재이용 비회원할인|summary key satisfaction rebook companion-discount|摘要 核心 满意度 再预订 同伴折扣')},
+{id:'profile',member:1,nav:t('회원 응답자 구성|Respondent profile|受访会员构成'),
+ head:t('50~60대가 80%이고, 수도권 비중이 4개 시점 중 가장 커졌습니다|80% are in their 50s–60s, and the capital region share is the highest of four surveys|50~60岁占80%，首都圈占比为四期中最高'),
+ lines:[t('전체 259명 중 개인정보 미동의 6명 제외 · 남 68.4% / 여 31.6%|6 of 259 excluded for no privacy consent · male 68.4% / female 31.6%|259份中6份未同意隐私条款已剔除 · 男68.4% / 女31.6%'),
+        t('광주/전라 34.0%로 1위를 지켰지만 25상 39.7%보다 줄었습니다|Gwangju/Jeolla stays first at 34.0%, down from 39.7%|光州/全罗以34.0%居首，但低于25上的39.7%')],
+ kpis:[[t('50대 + 60대|50s + 60s|50多岁+60多岁'),V('a5060').toFixed(1),'%',DL('a5060')+t('50대|50s|50多岁')+' '+V('age')[2].toFixed(1)+'% · '+t('60대|60s|60多岁')+' '+V('age')[3].toFixed(1)+'%'],
+       [t('남성 비율|Male share|男性占比'),V('male').toFixed(1),'%',DL('male')+(ISR()?'':t('남 173 · 여 80|173 men · 80 women|男173 · 女80'))],
+       [t('수도권 (서울+경기/인천)|Capital region|首都圈（首尔+京畿/仁川）'),'41.1','%','<span class="wow up">+5.8%p</span> '+t('25상 35.3%|H1 25: 35.3%|25上35.3%')],
+       [t('광주/전라|Gwangju/Jeolla|光州/全罗'),'34.0','%','<span class="wow dn">−5.7%p</span> '+t('1위 유지|Still #1|仍居首位'),'warn']],
+ blocks:[{type:'pairs',title:t('거주 지역 비중|Region of residence|居住地区占比'),pill:'%',legend:[[pp[2],'a'],[pp[3],'b']],max:42,cls:['a','b'],
+   rows:[[t('광주/전라|Gwangju/Jeolla|光州/全罗'),39.7,34.0],[t('서울|Seoul|首尔'),20.2,22.5],[t('경기/인천|Gyeonggi/Incheon|京畿/仁川'),15.1,18.6],[t('부산/울산/경남|Busan/Ulsan/Gyeongnam|釜山/蔚山/庆南'),18.2,16.6],[t('대구/경북|Daegu/Gyeongbuk|大邱/庆北'),3.8,5.1],[t('대전/세종/충청|Daejeon/Chungcheong|大田/忠清'),3.1,3.2]]},
+  {type:'bars',title:t('연령대 비중|Age group|年龄段占比'),pill:(ISR()?RN():pp[3])+' · %',max:65,rows:Z([t('30대 이하|30s or younger|30多岁及以下'),t('40대|40s|40多岁'),t('50대|50s|50多岁'),t('60대|60s|60多岁'),t('70대|70s|70多岁')],'age',['','','hl','hl','']),
+   note:t('대구/경북(13명), 대전/충청(8명)은 표본이 작아 참고용입니다.|Daegu/Gyeongbuk (13) and Daejeon/Chungcheong (8) are small samples; treat as indicative.|大邱/庆北（13人）和大田/忠清（8人）样本较小，仅供参考。')}],
+ tags:t('응답자 지역 연령 성별 수도권|respondents region age gender capital|受访者 地区 年龄 性别 首都圈')},
+{id:'region',member:1,nav:t('권역별 비교|By region|地区对比'),
+ head:t('같은 회원이라도 사는 곳에 따라 답이 다릅니다. 광주/전라는 동반자 할인, 부산/경남은 일본과 호텔, 경기/인천은 자유골프입니다|Answers differ by where members live: Gwangju/Jeolla wants companion discounts, Busan/Gyeongnam Japan and better hotels, Gyeonggi/Incheon free-style golf|会员居住地不同，回答也不同：光州/全罗要同伴折扣，釜山/庆南要日本和好酒店，京畿/仁川要自由高尔夫'),
+ lines:[t('권역 버튼을 누르면 해당 권역의 지표와 특징이 전체 대비로 표시됩니다|Pick a region to see its indicators against the all-member baseline|点击地区按钮，可查看该地区相对整体的指标和特点'),
+        t('대구/경북(13명)·대전/충청(8명)은 표본이 작아 방향성만 참고합니다|Daegu/Gyeongbuk (13) and Daejeon/Chungcheong (8) are small samples; read as direction only|大邱/庆北（13人）、大田/忠清（8人）样本较小，仅看趋势')],
+ region:{insights:[
+  [[t('기준|Baseline|基准'),t('전체 253명 기준값입니다. 권역을 선택하면 차이가 색으로 표시됩니다|All 253 members. Pick a region to see differences highlighted|全体253人的基准值。选择地区后差异会以颜色显示')],[t('최대 격차|Biggest gaps|最大差异'),t('비회원 할인 요구 22.8%(서울)~53.8%(대구/경북), 일본 희망 26.7%(광주/전라)~42.9%(부산/경남)|Companion-discount request ranges 22.8% (Seoul) to 53.8% (Daegu); Japan 26.7% (Gwangju) to 42.9% (Busan)|同伴折扣诉求22.8%（首尔）~53.8%（大邱）；日本26.7%（光州）~42.9%（釜山）')],[t('공항|Airports|机场'),t('서울·경기 인천 95~100%, 부산/경남 김해 97.6%, 광주/전라는 인천·김해·무안으로 분산|Seoul/Gyeonggi use Incheon (95–100%), Busan uses Gimhae (97.6%), Gwangju splits across Incheon, Gimhae and Muan|首尔·京畿95~100%用仁川，釜山97.6%用金海，光州分散于仁川、金海、务安')]],
+  [[t('충성도|Loyalty|忠诚度'),t('재이용 의향 4.53으로 최고, 비회원 할인 요구 22.8%로 가장 낮음|Highest rebook intent (4.53) and lowest companion-discount request (22.8%)|再预订意向最高（4.53），同伴折扣诉求最低（22.8%）')],[t('수요|Demand|需求'),t('일본 희망 40.4%, 연 2회 이상 해외 골프 71.9%, 인천 출발 94.7%|Japan 40.4%, golf abroad 2+ times 71.9%, Incheon 94.7%|日本40.4%，每年出国2次以上71.9%，仁川94.7%')],[t('채널|Channels|渠道'),t('네이버 밴드 29.8%로 높음 · 여성 응답 21.1%|Naver Band high at 29.8% · 21.1% female|Naver Band较高（29.8%）· 女性21.1%')]],
+  [[t('자유골프|Free-style|自由高尔夫'),t('노가이드 자유골프 선호 29.8% (전체 16.6%) — 자유형 상품 1순위 시장|29.8% prefer no-guide free-style golf (all 16.6%) — the best market for it|29.8%偏好无导游自由高尔夫（整体16.6%）——自由型产品首选市场')],[t('빈도|Frequency|频率'),t('연 2회 이상 해외 골프 78.7%로 최고, 카카오톡 확인 72.3%|Most frequent travellers: 78.7% go 2+ times a year; KakaoTalk 72.3%|出国频率最高：78.7%每年2次以上；KakaoTalk 72.3%')],[t('국내|Domestic|国内'),t('국내 희망 지역 전라 25.5%·강원 23.4%, 인천 출발 100%|Domestic picks: Jeolla 25.5%, Gangwon 23.4%; all fly from Incheon|国内首选全罗25.5%、江原23.4%；全部仁川出发')]],
+  [[t('동반자|Companions|同伴'),t('비회원 동반 할인 요구 53.5% — 동반자 혜택이 가장 절실한 핵심 권역|53.5% ask for companion discounts — the core region for companion benefits|53.5%要求同伴折扣——同伴优惠最迫切的核心地区')],[t('해외|Overseas|海外'),t('해외 이용률 58.1%로 평균 이하, 일본 희망 26.7%로 가장 낮고 동남아 47.7%|Below-average overseas use (58.1%); Japan lowest at 26.7%, SE Asia 47.7%|海外使用率58.1%低于平均；日本最低26.7%，东南亚47.7%')],[t('공항|Airports|机场'),t('인천 54.7%·김해 30.2%·무안 14.0%로 분산, 1개월 이내 문의 27.9%로 일찍 예약|Split across Incheon 54.7%, Gimhae 30.2%, Muan 14.0%; books early (27.9% within a month)|仁川54.7%、金海30.2%、务安14.0%分散；较早预订（1个月内仅27.9%）')],[t('채널|Channels|渠道'),t('PLK 앱 19.8%, 매니저 인지 경로 26.7%로 낮음 · 50~60대 86%|PLK app 19.8% and manager referrals 26.7% are low · 86% aged 50–69|PLK应用19.8%、经理介绍26.7%偏低 · 50~60多岁占86%')]],
+  [[t('일본|Japan|日本'),t('일본 희망 42.9%가 동남아 35.7%를 넘는 유일한 권역, 김해 출발 97.6%|The only region where Japan (42.9%) beats SE Asia (35.7%); 97.6% fly from Gimhae|唯一日本（42.9%）超过东南亚（35.7%）的地区；97.6%金海出发')],[t('호텔|Hotels|酒店'),t('호텔 등급 추가 지불 의향 59.5% (전체 37.2%), 골프텔 선호 33.3%로 1위|59.5% would pay more for the hotel (all 37.2%); golftel is the top style (33.3%)|59.5%愿为酒店升级付费（整体37.2%）；球场酒店偏好最高（33.3%）')],[t('예약|Booking|预订'),t('1개월 이내 문의 59.5%로 가장 임박형, 150만원 초과 예산 38.1%로 낮음|Latest bookers: 59.5% enquire within a month; budgets over ₩1.5M only 38.1%|最临近预订：59.5%在1个月内咨询；预算超150万仅38.1%')],[t('응답자|Profile|画像'),t('여성 응답 45.2%, 올해 행사 참여 21.4%로 최고|45.2% female; highest event attendance (21.4%)|女性45.2%；活动参与率最高（21.4%）')]],
+  [[t('만족|Satisfaction|满意度'),t('만족 3.62·재이용 3.69로 최저, 주 예약 경로가 투어링스인 회원 7.7%|Lowest satisfaction (3.62) and rebook intent (3.69); only 7.7% book mainly with us|满意度（3.62）和再预订意向（3.69）最低；主要通过Tourlinks预订仅7.7%')],[t('장벽|Barriers|障碍'),t('가격 장벽 53.8%, 해외 이용률 38.5% · 국내 희망 1위 강원|Price barrier 53.8%, overseas use 38.5% · top domestic pick: Gangwon|价格障碍53.8%，海外使用率38.5% · 国内首选江原')],[t('주의|Caution|注意'),t('13명이라 방향성만 참고|13 responses — direction only|仅13人，仅供参考')]],
+  [[t('주의|Caution|注意'),t('8명으로 참고용입니다|8 responses — indicative only|仅8人，仅供参考')],[t('선호|Preferences|偏好'),t('럭셔리 선호 50%, 동남아 희망 62.5%, 호텔 추가 지불 62.5%|Luxury 50%, SE Asia 62.5%, pay more for hotel 62.5%|豪华50%，东南亚62.5%，愿为酒店付费62.5%')],[t('만족|Satisfaction|满意度'),t('해외 이용자 만족 3.43으로 낮음|Overseas users rate us 3.43|海外用户满意度3.43')]]]},
+ tags:t('권역별 지역별 거주지 서울 경기 인천 광주 전라 부산 경남 대구 경북 대전 충청 비회원할인 공항|by-region region Seoul Gyeonggi Incheon Gwangju Jeolla Busan Gyeongnam Daegu Daejeon companion-discount airport|地区 居住地 首尔 京畿 仁川 光州 全罗 釜山 庆南 大邱 大田 忠清 同伴折扣 机场')},
+{id:'sat',member:1,nav:t('만족도 · 충성도|Satisfaction & loyalty|满意度·忠诚度'),
+ head:t('해외 이용 회원의 만족은 4.31점, 비이용 회원은 3.86점입니다|Overseas users rate us 4.31; non-users 3.86|海外用户满意度4.31分，未使用会员3.86分'),
+ lines:[t('해외 만족 전체 Top2 71.1%는 이용 경험 없는 87명이 필수 응답한 영향이고, 이용자 기준은 80.7%입니다|The 71.1% overall overseas Top-2 includes 87 non-users forced to answer; among users it is 80.7%|海外满意度整体Top2为71.1%，是87名未使用者被迫作答所致；实际用户为80.7%'),
+        t('재이용 의향 Top2 82.6% · 추천 의향 78.3% · 국내 패키지 만족 77.0%|Rebook intent 82.6% · recommend 78.3% · domestic package satisfaction 77.0%|再预订意向82.6% · 推荐意向78.3% · 国内套餐满意度77.0%')],
+ blocks:[{type:'table',title:t('해외 이용 여부별 만족|Satisfaction by overseas use|按海外使用情况的满意度'),pill:t('평균 5점 · Top2|5-pt mean · Top-2|5分制均值 · Top2'),
+   head:[t('지표|Metric|指标'),t('이용|Users|用户')+' '+V('nu'),t('비이용|Non-users|未使用')+' '+V('nnu')],
+   rows:[[t('투어링스 전반 만족|Overall satisfaction|整体满意度'),'<b>'+V('usat')[0].toFixed(2)+'</b>',V('usat')[1].toFixed(2)],[t('해외 패키지 만족|Overseas package|海外套餐满意度'),'<b>'+V('usat')[2].toFixed(2)+'</b>',V('usat')[3].toFixed(2)],[t('해외 패키지 Top2|Overseas package Top-2|海外套餐Top2'),'<b>'+V('usat')[4].toFixed(1)+'%</b>',V('usat')[5].toFixed(1)+'%'],[t('회원 행사 Top2 (참여자)|Member events Top-2 (attendees)|会员活动Top2（参与者）')+' '+V('npart'),'<b>'+V('affil')[4].toFixed(1)+'%</b>','–']]},
+  {type:'bars',title:t('지역별 재이용 의향|Rebook intent by region|各地区再预订意向'),pill:t('평균 5점|5-pt mean|5分制均值'),max:5,unit:'',dec:2,
+   rows:[[t('서울|Seoul|首尔'),4.53,'hl'],[t('경기/인천|Gyeonggi/Incheon|京畿/仁川'),4.43,'hl'],[t('부산/울산/경남|Busan/Gyeongnam|釜山/庆南'),4.24],[t('광주/전라|Gwangju/Jeolla|光州/全罗'),4.23],[t('대전/충청 (8명)|Daejeon/Chungcheong (8)|大田/忠清（8人）'),3.75],[t('대구/경북 (13명)|Daegu/Gyeongbuk (13)|大邱/庆北（13人）'),3.69,'hot']]}],
+ tags:t('만족도 재이용 추천 충성도 이용자|satisfaction rebook recommend loyalty users|满意度 再预订 推荐 忠诚度 用户')},
+{id:'style',member:1,nav:t('해외 상품 선호|Overseas product preferences|海外产品偏好'),
+ head:t('럭셔리가 골프텔을 제치고 1위, 4박5일이 표준이 됐습니다|Luxury overtakes golftels; 4 nights/5 days becomes the standard|豪华型超越球场酒店居首，4晚5天成为标准'),
+ lines:[t('연령별: 40대 럭셔리 35.0%·자유골프 22.5% / 50대 럭셔리 27.8%·시내호텔 27.1% / 60대 골프텔 41.4%|By age: 40s luxury 35.0%, free-style 22.5% / 50s luxury 27.8%, city hotel 27.1% / 60s golftel 41.4%|按年龄：40多岁豪华35.0%、自由22.5% / 50多岁豪华27.8%、市区酒店27.1% / 60多岁球场酒店41.4%'),
+        t('출발은 12~2월에 몰리고 8월(19.0%)이 두 번째 피크입니다|Departures cluster in Dec–Feb, with August (19.0%) as a second peak|出发集中在12~2月，8月（19.0%）为第二高峰')],
+ blocks:[{type:'pairs',title:t('선호 해외 골프 스타일|Preferred overseas golf style|偏好的海外高尔夫类型'),pill:'%',legend:ISR()?RLEG():[[pp[2],'a'],[pp[3],'b']],max:40,cls:['a','b'],
+   rows:ZP([t('럭셔리 (상급 골프장+5성급)|Luxury (premium course + 5-star)|豪华型（高端球场+五星）'),t('가성비 골프텔|Value golftel|性价比球场酒店'),t('시내 호텔 다색 가성비|City hotel, multi-course|市区酒店多球场'),t('노가이드 자유 골프|Free-style, no guide|无导游自由高尔夫'),t('골프장만 예약|Tee times only|仅预订球场')],ISR()?V0('style'):[28.1,32.2,20.2,12.7,5.5],V('style'))},
+  {type:'months',title:t('선호 출발 월|Preferred departure month|偏好出发月份'),pill:t('최대 3개 · 응답자 대비 %|Up to 3 · % of respondents|最多3项 · 占受访者%'),
+   vals:V('months'),
+   mini:[[t('4박5일|4N5D|4晚5天')+' '+V('mini')[0].toFixed(0)+'%',t('선호 기간|Preferred trip length|偏好行程')],[V('mini')[1].toFixed(1)+'%',t('하루 27홀 이상|27+ holes a day|每天27洞以上')],[t('금|Fri|周五')+' '+V('mini')[2].toFixed(0)+'%',t('금요일 출발 선호|Prefer Friday departure|偏好周五出发')]]}],
+ tags:t('스타일 럭셔리 골프텔 자유골프 4박5일 27홀 출발시기|style luxury golftel free-style 4N5D 27-holes departure|类型 豪华 球场酒店 自由高尔夫 4晚5天 27洞 出发时间')},
+{id:'barrier',member:1,nav:t('구매 장벽 · 추가 지불|Barriers & willingness to pay|购买障碍·追加付费'),
+ head:t('예약을 막는 1순위는 일정입니다. 반대로 골프장·호텔·항공 업그레이드에는 돈을 더 낼 의향이 큽니다|Dates are the top barrier, yet members will pay more for better courses, hotels and flights|日期是首要障碍，但会员愿意为更好的球场、酒店和航班多付费'),
+ lines:[t('예약 단위 3~4명 56.1%, 2명 18.2%, 1명 2.8% → 1~2인 출발과 조인이 가격 인하보다 큰 레버|Groups of 3–4: 56.1%, 2: 18.2%, 1: 2.8% → solo/duo departures and join-ins matter more than price cuts|3~4人56.1%、2人18.2%、1人2.8% → 1~2人出发和拼团比降价更有效'),
+        t('"추가 지불 의향 없음"은 4.7%뿐입니다|Only 4.7% would pay nothing extra|“不愿追加付费”仅4.7%')],
+ blocks:[{type:'bars',title:t('보고도 예약하지 않는 이유|Why members don’t book|看了也不预订的原因'),pill:t('최대 2개 · %|Up to 2 · %|最多2项 · %'),max:70,
+   rows:Z([t('일정이 맞지 않음|Dates don’t fit|日期不合适'),t('가격이 비쌈|Too expensive|价格太贵'),t('동반자 구하기 어려움|Hard to find companions|难找同伴'),t('원하는 출발일 없음|No suitable departure|没有想要的出发日'),t('최소 출발인원 부담|Minimum group size|最低成团人数'),t('원하는 항공편 없음|No suitable flight|没有合适航班'),t('원하는 골프장 아님|Not the course I want|不是想要的球场')],'barrier',['hot'])},
+  {type:'bars',title:t('가격이 올라도 더 낼 항목|What members would pay more for|价格上涨也愿付费的项目'),pill:t('최대 2개 · %|Up to 2 · %|最多2项 · %'),max:70,
+   rows:Z([t('더 좋은 골프장|Better course|更好的球场'),t('호텔·객실 등급|Hotel / room grade|酒店·房型等级'),t('좋은 항공 시간대|Better flight times|更好的航班时段'),t('국적기·선호 항공사|Korean or preferred airline|国籍/偏好航司'),t('1인 1객실|Single room|单人单间'),t('소규모 프라이빗|Small private group|小型私密团'),t('추가 지불 의향 없음|Nothing extra|不愿追加付费')],'wtp',['hl','hl'])}],
+ tags:t('구매장벽 가격 동반자 일정 업셀링 추가지불 호텔 항공|barrier price companion dates upsell pay-more hotel flight|障碍 价格 同伴 日期 追加销售 付费 酒店 航班')},
+{id:'booking',member:1,nav:t('예약 경로 · 리드타임|Booking channel & lead time|预订渠道·提前期'),
+ head:t('해외 비이용 회원의 70%는 다른 경로로 예약하고, 문의 시점은 점점 출발일에 가까워집니다|70% of non-users book elsewhere, and enquiries come closer to departure|70%的未使用会员通过其他渠道预订，咨询时间越来越临近出发'),
+ lines:[t('해외 1개월 이내 문의 37.2% (25상 14.7%) · 국내 1개월 이내 69.2% (25상 45.2%)|Overseas enquiries within a month 37.2% (14.7%) · domestic 69.2% (45.2%)|海外1个月内咨询37.2%（25上14.7%）· 国内69.2%（25上45.2%）'),
+        t('비이용 회원 중 연 2회 이상 해외 골프를 가는 31명이 전환 대상입니다|31 non-users golf abroad twice a year or more — the conversion target|未使用会员中每年出国打球2次以上的31人是转化目标')],
+ blocks:[{type:'table',title:t('골프여행 주 예약 경로|Main booking channel|主要预订渠道'),pill:'%',head:[t('경로|Channel|渠道'),t('이용|Users|用户')+' '+V('nu'),t('비이용|Non-users|未使用')+' '+V('nnu')],hl:[0],
+   rows:[t('투어링스|Tourlinks|Tourlinks'),t('다른 골프 전문 여행사|Other golf agencies|其他高尔夫旅行社'),t('지인·골프 모임|Friends / golf clubs|熟人·球友会'),t('직접 예약 (항공·호텔·골프장)|Self-booked|自行预订'),t('PLK 매니저|PLK manager|PLK经理'),t('일반 여행사|General travel agency|普通旅行社')].map((l,i)=>[l,(i?'':'<b>')+V('book')[i][0].toFixed(1)+(i?'':'</b>'),(i?'':'<b>')+V('book')[i][1].toFixed(1)+(i?'':'</b>')])},
+  {type:'pairs',title:t('예약 문의 시점|When members enquire|咨询时间'),pill:'%',legend:[[t('국내|Domestic|国内'),'a'],[t('해외|Overseas|海外'),'b']],max:45,cls:['a','b'],
+   rows:ZP([t('3주 이내|Within 3 weeks|3周以内'),t('1개월 전|1 month before|提前1个月'),t('2개월 전|2 months before|提前2个月'),t('3개월 전|3 months before|提前3个月')],V('leaddom'),V('leadovs'))}],
+ tags:t('예약경로 예약시점 리드타임 타사 전환|channel lead-time competitors conversion|预订渠道 提前期 竞争对手 转化')},
+{id:'affil',member:1,nav:t('제휴 골프장 · 회원 행사|Partner courses & events|合作球场·会员活动'),
+ head:t('회원 절반이 해외 라운딩만 따로 예약해 봤고, 행사 참여자 만족은 83.7%입니다|Half of members have booked overseas rounds only; event attendees are 83.7% satisfied|半数会员曾单独预订海外打球，活动参与者满意度83.7%'),
+ lines:[t('라운딩만 예약 이유 1위 = 숙박 별도 예약 → "골프+호텔 번들"로 전환할 여지|Top reason for tee-time-only bookings: hotel booked separately → room to sell golf+hotel bundles|只订球场的首要原因是另订住宿 → 可转化为“球场+酒店”套餐'),
+        t('행사 주관식: 1인 참가, 비회원 동반 할인, 라운딩+관광, 공정한 시상, 2~3개월 전 일정 공지|Event comments: solo entry, companion discounts, golf + sightseeing, fair awards, schedules 2–3 months ahead|活动意见：允许单人参加、同伴折扣、打球+观光、公平颁奖、提前2~3个月公布')],
+ kpis:[[t('라운딩만 예약 경험|Booked rounds only|曾只订球场'),V('affil')[0].toFixed(1),'%',DL('affil',0,0)+(ISR()?'':t('132명 · 동남아 72% · 일본 36%|132 · SE Asia 72% · Japan 36%|132人 · 东南亚72% · 日本36%'))],
+       [t('제휴 골프장 만족|Partner course satisfaction|合作球场满意度'),V('affil')[1].toFixed(1),'%',DL('affil',0,1)+(ISR()?'':t('평균 4.04점|Mean 4.04|均值4.04分'))],
+       [t('입회 시 해외 제휴 안내 못 받음|Not briefed on partners at sign-up|入会时未获合作球场说明'),V('affil')[2].toFixed(1),'%',DL('affil',0,2)+(ISR()?'':t('43명 · 필요 안내 1위 = 이용 혜택|43 · most wanted: member benefits|43人 · 最需要：使用优惠')),'warn'],
+       [t('올해 행사 참여|Event attendees this year|今年活动参与'),String(V('affil')[3]),t('명| | 人'),t('참여자 만족|Attendee Top-2|参与者满意')+' '+V('affil')[4].toFixed(1)+'%']],
+ blocks:[{type:'bars',title:t('참여 행사|Events attended|参与的活动'),pill:t('참여자 · 중복 · 명|Attendees · multiple · people|参与者 · 多选 · 人'),base:V('npart'),max:Math.max(4,...V('events')),unit:t('명||人'),dec:0,
+   rows:Z([t('2월 푸꾸옥|Feb Phu Quoc|2月富国岛'),t('6월 일본 루스츠|Jun Rusutsu, Japan|6月日本留寿都'),t('5월 황산|May Huangshan|5月黄山'),t('10월 베트남 하이퐁|Oct Hai Phong|10月越南海防'),t('4월 일본 나라|Apr Nara, Japan|4月日本奈良'),t('7월 하롱베이|Jul Ha Long Bay|7月下龙湾'),t('8월 중국 대련|Aug Dalian|8月大连'),t('1월 괌|Jan Guam|1月关岛')],'events',['hl'])},
+  {type:'bars',title:t('행사 만족 요인|What attendees liked|活动满意因素'),pill:t('참여자 · 최대 2개 · %|Attendees · up to 2 · %|参与者 · 最多2项 · %'),base:V('npart'),max:100,
+   rows:Z([t('전체적인 일정|Overall itinerary|整体行程'),t('골프장|Golf course|球场'),t('직원 인솔·현지 안내|Staff escort & local guidance|员工带队·当地向导'),t('숙박 시설|Accommodation|住宿'),t('식사|Meals|餐饮'),t('이용 요금|Price|价格')],'evsat',['hl','','hl'])}],
+ tags:t('제휴구장 라운딩만 입회안내 회원행사 인솔 시상 푸꾸옥 루스츠|partner-courses tee-times onboarding events escort awards Phu-Quoc Rusutsu|合作球场 只订球场 入会说明 会员活动 带队 颁奖 富国岛 留寿都')},
+{id:'channel',member:1,nav:t('채널 · 계획 · 예산|Channels, plans & budget|渠道·计划·预算'),
+ head:t('카카오톡이 압도적이고 PLK 앱이 2위로 컸습니다. 해외 계획은 76%, 예산은 150~200만원대로 올라갑니다|KakaoTalk dominates and the PLK app is now #2. 76% plan to golf abroad, with budgets moving to ₩1.5–2M|KakaoTalk遥遥领先，PLK应用升至第二。76%计划出国打球，预算升至150~200万韩元'),
+ lines:[t('신규 인지 경로: 매니저 34.0% · PLK 앱 26.5% (25상 14.7%) · PLK 회원 골프대회 8.7% (신규)|How members found us: managers 34.0% · PLK app 26.5% (14.7%) · PLK tournaments 8.7% (new)|认知渠道：经理34.0% · PLK应用26.5%（25上14.7%）· PLK会员比赛8.7%（新）'),
+        t('해외 희망 지역: 동남아 44.3% · 일본 35.2% / 국내: 제주 32.4% · 전라 20.6%|Preferred destination abroad: SE Asia 44.3% · Japan 35.2% / domestic: Jeju 32.4% · Jeolla 20.6%|海外首选：东南亚44.3% · 日本35.2% / 国内：济州32.4% · 全罗20.6%')],
+ blocks:[{type:'pairs',title:t('정보 확인 채널|Information channels|信息获取渠道'),pill:t('최대 3개 · %|Up to 3 · %|最多3项 · %'),legend:[[t('현재|Now|现在'),'a'],[t('앞으로 희망|Preferred|希望'),'b']],max:80,cls:['a','b'],
+   rows:ZP([t('카카오톡 홍보|KakaoTalk|KakaoTalk推送'),t('PLK 앱|PLK app|PLK应用'),t('투어링스 홈페이지|Tourlinks website|Tourlinks官网'),t('네이버 밴드|Naver Band|Naver Band'),t('문자|SMS|短信'),t('영업 매니저|Sales manager|销售经理'),t('지인|Friends|熟人')],V('chnow'),V('chwant'))},
+  {type:'bars',title:t('해외 1인 예산|Overseas budget per person|海外人均预算'),pill:'%',max:60,
+   rows:Z([t('100만원 이내|Under ₩1M|100万以内'),t('100~150만원|₩1–1.5M|100~150万'),t('150~200만원|₩1.5–2M|150~200万'),t('200~250만원|₩2–2.5M|200~250万'),t('250만원 이상|₩2.5M+|250万以上')],'budget',['','hl','hl'])},
+  {type:'bars',title:t('실제 이용 의향 상품|Products members would buy|实际购买意向产品'),pill:t('최대 3개 · %|Up to 3 · %|最多3项 · %'),max:65,full:true,
+   rows:Z([t('세계·아시아 100대 골프장|World / Asia top-100 courses|世界·亚洲百佳球场'),t('미식 & 골프|Food & golf|美食+高尔夫'),t('프로 동행 해외 아카데미|Overseas academy with a pro|职业选手海外学院'),t('1인 출발 조인|Solo join-in tours|单人拼团'),t('크루즈 & 골프|Cruise & golf|邮轮+高尔夫')],'theme',['hl'])}],
+ tags:t('마케팅 채널 카카오톡 앱 홈페이지 계획 예산 희망지역 일본 제주 100대골프장 미식|marketing channels KakaoTalk app website plans budget destination Japan Jeju top-100 food|营销 渠道 KakaoTalk 应用 官网 计划 预算 目的地 日本 济州 百佳球场 美食')},
+{id:'manager',nav:t('영업 매니저 (63명)|Sales managers (63)|销售经理（63人）'),
+ head:t('매니저 90%가 상품을 안내했습니다. 필요한 건 가격·예약 안내와 "타사 대비 경쟁력" 교육입니다|90% of managers promoted our packages; they need pricing, booking and competitive-edge training|90%的经理推介过产品，他们需要价格·预订说明和“相对竞品优势”培训'),
+ lines:[t('10/28까지 66건 → 유효 63명 (테스트·미동의 각 1건, 동일인 중복 1건 제외) · 수도권 24 · 부산/경남 19 · 광주/전라 10 · 대구/경북 10|66 responses to Oct 28 → 63 valid (1 test, 1 no consent, 1 duplicate removed) · Capital 24 · Busan/Gyeongnam 19 · Gwangju/Jeolla 10 · Daegu/Gyeongbuk 10|截至10/28共66份 → 有效63份（剔除测试、未同意、重复各1份）· 首都圈24 · 釜山/庆南19 · 光州/全罗10 · 大邱/庆北10'),
+        t('교육 요구 최다는 "타사 대비 경쟁력·비교 분석", 이어서 지역별 골프장·상품과 상담 스킬입니다|Most requested training: how we compare with competitors, then regional courses and products, then consultation skills|培训需求最多的是“与竞品的对比与优势”，其次是各地区球场·产品和咨询技巧')],
+ kpis:[[t('최근 1년 상품 안내|Promoted packages (past year)|近一年推介产品'),'90.5','%',t('57명 · 부산/경남 100% · 수도권 83.3%|57 · Busan 100% · Capital 83.3%|57人 · 釜山100% · 首都圈83.3%')],
+       [t('투어링스 교육 이수|Received Tourlinks training|接受Tourlinks培训'),'98.4','%',t('상담 응대 교육은 19.0%만|Only 19.0% on consultation skills|咨询应对培训仅19.0%')],
+       [t('로터스밸리 프로모션 인지|Know the Lotus Valley promo|知道Lotus Valley促销'),'88.9','%',t('월별 기획전 63.5%|Monthly specials 63.5%|月度特辑63.5%')],
+       [t('제주 만원의 행복 인지|Know the Jeju ₩10,000 promo|知道济州“万元幸福”'),'30.2','%',t('단발 프로모션 전달 약함|One-off promos don’t reach them|一次性促销传达不足'),'warn']],
+ blocks:[{type:'pairs',base:63,baseA:63,title:t('교육 – 받은 내용 vs 필요한 내용|Training received vs needed|已接受培训 vs 需要的培训'),pill:'%',legend:[[t('받은 교육|Received|已接受'),'a'],[t('필요한 교육 (최대 3개)|Needed (up to 3)|需要（最多3项）'),'m']],max:80,cls:['a','m'],
+   rows:[[t('가격·예약 안내|Pricing & booking|价格·预订'),50.8,63.5],[t('상품 이해·설명|Product knowledge|产品理解'),79.4,58.7],[t('골프장 정보|Course information|球场信息'),52.4,41.3],[t('프로모션 정보|Promotions|促销信息'),63.5,39.7],[t('상담 응대 방법|Consultation skills|咨询应对'),19.0,27.0],[t('국가·지역 정보|Country & region|国家·地区'),44.4,19.0]]},
+  {type:'list',title:t('현장에서 나온 이야기|What managers told us|一线反馈'),pill:t('주관식 요약|Open answers|开放题摘要'),
+   items:[[t('경쟁력|Edge|竞争力'),t('타사 대비 가격·골프장 비교 분석과 투어링스만의 차별 포인트, 브랜드북이 필요하다|Need price and course comparisons with competitors, our selling points, and a brand book|需要与竞品的价格·球场对比、Tourlinks卖点和品牌手册')],[t('상품|Products|产品'),t('일본 상품 요청 최다, 프로·연예인 동반 원정, 2인 상품, 국내 상품 다양화, 2027 동계 프로모션 조기 확정|Japan most requested; pro/celebrity tours, 2-person packages, more domestic products, confirm winter 2027 promos early|最希望日本产品；职业选手/明星同行、2人产品、更多国内产品、尽早确定2027冬季促销')],[t('응대|Service|应对'),t('답변·피드백 지연, 원하는 골프장이 안 될 때 대안 안내가 없어 타 여행사로 이탈|Slow replies; when a course is unavailable no alternative is offered, so customers go elsewhere|回复慢；想要的球场订不到时不提供替代方案，客户转向其他旅行社')],[t('홈페이지|Website|官网'),t('상품 가격이 없어 고객이 다른 여행사에서 검색, "지방출발" 대신 부산출발 등 구체 표기|No prices shown so customers search elsewhere; say "from Busan" instead of "regional departure"|未标价导致客户去其他旅行社搜索；用“釜山出发”替代“地方出发”')],[t('신뢰|Trust|信任'),t('고객은 입회금 보장·회사 존속을 묻는다 → 회사 신뢰를 설명할 자료 필요|Customers ask whether deposits are safe and the company will last → need material on trust|客户询问入会金保障和公司存续 → 需要说明公司可信度的资料')]]},
+  {type:'table',full:true,title:t('권역별 매니저 인식|Managers by branch region|各地区经理认知'),pill:t('매니저 응답자 대비 % · 대구/경북·광주/전라 각 10명|% of managers · Daegu & Gwangju 10 each|占经理% · 大邱、光州各10人'),
+   head:[t('지표|Indicator|指标'),t('수도권 24|Capital 24|首都圈24'),t('부산/경남 19|Busan 19|釜山19'),t('대구/경북 10|Daegu 10|大邱10'),t('광주/전라 10|Gwangju 10|光州10'),t('전체 63|All 63|全部63')],
+   rows:[[t('최근 1년 상품 안내|Promoted packages|推介产品'),'83.3','<b>100.0</b>','90.0','90.0','90.5'],[t('회원 선호 · 럭셔리|Members prefer luxury|会员偏好豪华'),'16.7','26.3','<b>50.0</b>','10.0','23.8'],[t('회원 선호 · 골프텔|Members prefer golftel|会员偏好球场酒店'),'16.7','21.1','20.0','<b>40.0</b>','22.2'],[t('고려 요소 · 골프장 수준|Key factor · course|考虑因素·球场'),'<b>62.5</b>','26.3','20.0','20.0','38.1'],[t('고려 요소 · 이용 요금|Key factor · price|考虑因素·价格'),'8.3','<b>47.4</b>','40.0','20.0','27.0'],[t('문의 지역 · 일본|Enquiries · Japan|咨询·日本'),'58.3','<b>78.9</b>','60.0','40.0','61.9'],[t('필요 교육 · 가격·예약|Training need · pricing|培训需求·价格'),'66.7','52.6','70.0','70.0','63.5'],[t('주 확인 경로 · 밴드|Main channel · Band|主要渠道·Band'),'8.3','<b>42.1</b>','30.0','30.0','25.4']]}],
+ tags:t('매니저 교육 영업 프로모션 로터스밸리 현장이슈 답변지연 경쟁력 권역별 홈페이지|managers training sales promotions Lotus-Valley field-issues slow-replies edge by-region website|经理 培训 销售 促销 LotusValley 一线问题 回复慢 竞争力 地区 官网')},
+{id:'cross',nav:t('회원 × 매니저 교차|Members × managers|会员×经理交叉'),
+ head:t('방향은 같지만 상품 인식과 채널에서 갈립니다. 회원은 고급·자유를, 매니저는 가성비·인솔을 봅니다|Same direction, different reads on product and channels: members want premium and freedom, managers see value and escorts|方向一致，但在产品和渠道认知上有分歧：会员要高端和自由，经理看重性价比和带队'),
+ lines:[t('일치: 골프장 > 가격 기준 · 동남아·일본 2강 (일본 회원 35.2% / 매니저 36.4%) · 12~2월 시즌 (회원 61.9% / 매니저 69.8%) · 직원 인솔이 강점|Agree on: course over price · SE Asia & Japan (Japan 35.2% vs 36.4%) · Dec–Feb season (61.9% vs 69.8%) · staff escort as a strength|一致：球场优先于价格 · 东南亚与日本双强（日本35.2% vs 36.4%）· 12~2月旺季（61.9% vs 69.8%）· 员工带队是优势'),
+        t('격차: 스타일 인식 · 프리미엄 요소 · PLK 앱 활용|Gaps: style perception · premium add-ons · use of the PLK app|分歧：类型认知 · 高端要素 · PLK应用使用')],
+ blocks:[{type:'pairs',title:t('선호 스타일 인식|Preferred style|偏好类型认知'),pill:t('단일 선택 · %|Single choice · %|单选 · %'),legend:[[t('회원 253명|Members 253|会员253人'),'b'],[t('매니저 63명|Managers 63|经理63人'),'m']],max:34,base:63,baseA:253,cls:['b','m'],
+   rows:[[t('럭셔리|Luxury|豪华型'),30.8,23.8],[t('가성비 골프텔|Value golftel|性价比球场酒店'),25.7,22.2],[t('시내 호텔 다색|City hotel, multi-course|市区酒店多球场'),19.0,20.6],[t('노가이드 자유 골프|Free-style, no guide|无导游自由'),16.6,3.2],[t('골프장만 예약|Tee times only|仅订球场'),5.9,9.5]]},
+  {type:'pairs',title:t('프리미엄 요소|Premium add-ons|高端要素'),pill:'%',legend:[[t('회원 추가 지불 의향|Members would pay|会员愿付费'),'b'],[t('매니저 경쟁력 조건|Managers’ key edge|经理认为的竞争条件'),'m']],max:62,cls:['b','m'],base:63,baseA:253,
+   rows:[[t('더 좋은 골프장|Better course|更好的球场'),58.5,20.6],[t('고급 호텔·객실|Better hotel / room|高级酒店·房型'),37.2,3.2],[t('항공 시간대·국적기|Flight times / airline|航班时段·国籍航司'),41.9,1.6],[t('소규모 프라이빗|Small private group|小型私密团'),12.3,15.9],[t('전문 인솔·현지 지원|Escort & local support|专业带队·当地支持'),1.2,15.9],[t('미식·식사|Food|美食·餐饮'),5.9,6.3]]},
+  {type:'pairs',title:t('정보 채널|Information channels|信息渠道'),pill:'%',legend:[[t('회원 정보 확인|Members use|会员使用'),'b'],[t('매니저 가입·이용|Managers use|经理使用'),'m']],max:85,cls:['b','m'],full:true,base:63,baseA:253,
+   rows:[[t('카카오톡|KakaoTalk|KakaoTalk'),62.8,81.0],[t('PLK 앱 (매니저: 주 확인 경로)|PLK app (managers: main channel)|PLK应用（经理：主要渠道）'),26.1,11.1],[t('투어링스 홈페이지|Tourlinks website|Tourlinks官网'),24.9,66.7],[t('네이버 밴드|Naver Band|Naver Band'),18.6,54.0],[t('인스타그램·SNS|Instagram / SNS|Instagram·SNS'),4.0,33.3]]}],
+ tags:t('교차분석 인식격차 스타일 럭셔리 자유골프 프리미엄 호텔 항공 인솔자 채널 앱|cross-analysis gaps style luxury free-style premium hotel flight escort channel app|交叉分析 认知差异 类型 豪华 自由高尔夫 高端 酒店 航班 带队 渠道 应用')},
+{id:'trend',nav:t('시계열 24상 → 26하|Trends H1 24 → H2 26|时间序列 24上→26下'),
+ head:t('일본은 계속 오르고, 예산은 커지고, 예약은 임박해집니다. 무안 출발은 사실상 사라졌습니다|Japan keeps rising, budgets grow, bookings come later, and Muan departures have all but vanished|日本持续上升，预算增加，预订越来越临近，务安出发几乎消失'),
+ lines:[t('24상·24하는 25년 상반기 분석표의 값, 25상은 원자료 재집계 · 단일→중복 선택 문항은 순위로 비교|H1/H2 24 from the H1 25 analysis sheet; H1 25 recalculated from raw data · items that became multi-select are compared by rank|24上·24下取自25上分析表，25上按原始数据重算 · 改为多选的题目按排名比较'),
+        t('무안 감소는 공항 운항 차질 영향으로 추정합니다|The Muan drop is likely due to disrupted operations at the airport|务安下降推测与机场运营受阻有关')],
+ blocks:[{type:'line',title:t('해외 희망 지역|Preferred overseas destination|海外首选目的地'),pill:pp.slice(1).join(' · ')+' · %',cats:pp.slice(1),max:80,
+   series:[[t('동남아|SE Asia|东南亚'),[65.4,48.6,44.3],'--blue',1],[t('일본|Japan|日本'),[13.4,31.5,35.2],'--orange',2],[t('남태평양|South Pacific|南太平洋'),[3.2,8.2,6.3],'--bar-muted',0]]},
+  {type:'line',title:t('주 이용 공항|Departure airport|主要出发机场'),pill:pp.join(' · ')+' · %',cats:pp,max:80,
+   series:[[t('인천|Incheon|仁川'),[50.9,51.2,49.7,60.9],'--blue',1],[t('김해|Gimhae|金海'),[23.3,26.5,25.7,29.6],'--bar-2',1],[t('무안|Muan|务安'),[21.6,20.1,19.5,4.7],'--neg',2]]},
+  {type:'table',title:t('주요 지표 변화|Key indicators|主要指标变化'),pill:t('초록 개선·확대 · 빨강 악화·축소|Green better · red worse|绿色改善 · 红色恶化'),full:true,
+   head:[t('지표|Indicator|指标'),pp[0],pp[1],pp[2],pp[3],t('변화|Change|变化')],
+   rows:[[t('해외 희망 지역 · 일본|Japan as preferred destination|海外首选·日本'),'–','13.4%','31.5%','<b>35.2%</b>',['+3.7%p','up']],
+         [t('1인 예산 150만원 초과|Budget over ₩1.5M|人均预算超150万'),'–','–','45.5%','<b>54.6%</b>',['+9.1%p','up']],
+         [t('선호 스타일 · 럭셔리|Luxury style|偏好类型·豪华'),'–','–','28.1%','<b>30.8%</b>',['+2.7%p','up']],
+         [t('선호 기간 · 4박|4-night trips|偏好行程·4晚'),'–','–','35.3%','<b>53.4%</b>',['+18.1%p','up']],
+         [t('해외 문의 1개월 이내|Overseas enquiry within a month|海外1个月内咨询'),'–','13.1%','14.7%','<b>37.2%</b>',['+22.5%p','fl']],
+         [t('출발 공항 · 무안|Muan departures|出发机场·务安'),'21.6%','20.1%','19.5%','<b>4.7%</b>',['−14.8%p','dn']],
+         [t('해외 골프 패키지 이용률|Overseas package usage|海外套餐使用率'),'37.8%','42.1%','46.2%','<b>45.8%</b>',['−0.4%p','fl']],
+         [t('해외 패키지 만족 Top2 (이용자)|Overseas satisfaction Top-2 (users)|海外满意度Top2（用户）'),'–','–','75.6%','<b>80.7%</b>',['+5.1%p','up']],
+         [t('회원 행사 만족 Top2 (참여자)|Event satisfaction Top-2 (attendees)|活动满意度Top2（参与者）'),'–','–','81.2%','<b>83.7%</b>',['+2.5%p','up']],
+         [t('동반 비회원 할인 요구|Companion discount request|同伴折扣诉求'),'–','–','32.2%','<b>39.5%</b>',['+7.3%p','dn']]]}],
+ tags:t('시계열 일본 동남아 예산 스타일 체류기간 무안 공항 인천 김해 리드타임 만족도 이용률|trends Japan SE-Asia budget style trip-length Muan airport Incheon Gimhae lead-time satisfaction usage|时间序列 日本 东南亚 预算 类型 行程天数 务安 机场 仁川 金海 提前期 满意度 使用率')},
+{id:'actions',nav:t('실행 과제|Action items|执行事项'),
+ head:t('다음 분기에 결정할 여섯 가지|Six decisions for next quarter|下季度需决定的六件事'),
+ lines:[t('다음 설문: 미이용자는 만족도 문항을 건너뛰고, 만족도·이용 여부·희망 지역·예산 보기는 고정해 시계열 비교를 유지합니다|Next survey: let non-users skip satisfaction questions and keep satisfaction, usage, destination and budget options fixed for trend comparison|下次问卷：未使用者跳过满意度题，满意度、使用情况、目的地、预算选项保持不变以便趋势比较')],
+ acts:[[t('일본 노가이드 골프+호텔 라인업|No-guide Japan golf + hotel line-up|日本无导游高尔夫+酒店产品线'),t('최우선|Top priority|最优先'),'neg',t('일본 희망 35.2%로 3시점 연속 상승, 매니저 요청도 일본이 최다입니다.|Japan demand at 35.2%, up three surveys running; managers ask for Japan most.|日本需求35.2%，连续三期上升；经理也最希望日本产品。'),t('상품기획 · 예약실|Product · Reservations|产品企划·预订部')],
+       [t('비회원 동반 할인 상시화|Year-round companion discount|常态化非会员同伴折扣'),t('최우선|Top priority|最优先'),'neg',t('개선 요구 1위 39.5%. 상시 1인 동반 할인이나 동반자 회원가를 검토합니다.|#1 request at 39.5%. Consider a standing one-companion discount or member rates for companions.|首要诉求39.5%。研究常设1名同伴折扣或同伴会员价。'),t('경영지원 · PLK 협의|Management · with PLK|经营支援·与PLK协商')],
+       [t('1~2인 조인 확정 출발편|Guaranteed solo/duo join-in departures|1~2人拼团保证出发'),t('신규|New|新'),'',t('동반자 문제 22.1%, 1~2인 예약 21.0%, 1인 조인 이용 의향 22.1%. 월 1~2회 운영합니다.|Companion issue 22.1%, 1–2-person bookings 21.0%, solo join-in interest 22.1%. Run once or twice a month.|同伴问题22.1%，1~2人预订21.0%，单人拼团意向22.1%。每月1~2次。'),t('예약실|Reservations|预订部')],
+       [t('4박5일 표준 · 럭셔리 정규 라인|4N5D standard · regular luxury line|4晚5天标准·常规豪华线'),t('상품|Product|产品'),'',t('기본 18홀+추가 9홀 옵션, 호텔·항공 업그레이드를 유료 옵션으로 붙입니다.|18 holes plus an optional 9; sell hotel and flight upgrades as paid options.|标配18洞+加9洞选项，酒店·航班升级作为付费选项。'),t('상품기획|Product|产品企划')],
+       [t('매니저 교육 1장 요약본|One-page manager brief|经理培训一页摘要'),t('교육|Training|培训'),'',t('회원 혜택 계산, 예약 절차, 타사 대비 차별점을 한 장으로. 상담에 업그레이드 제안 단계를 넣습니다.|Member benefits, booking steps and our edge on one page; add an upgrade step to consultations.|会员优惠计算、预订流程、竞品差异一页说清；咨询中加入升级推荐步骤。'),t('영업지원 · PLK 교육|Sales support · PLK training|销售支援·PLK培训')],
+       [t('판매 구조 · 응대 속도|Sales timing & response speed|销售节奏·应对速度'),t('운영|Operations|运营'),'',t('2~3개월 전 오픈 + 4~6주 전 확정 출발 특가, 호남 회원 인천·김해 연계 교통, 문의 응답 기준 시간.|Open 2–3 months out with guaranteed-departure deals 4–6 weeks before, Honam airport transfers, a reply-time standard.|提前2~3个月开售+出发前4~6周保证出发特价，湖南会员仁川·金海接驳，设定回复时限。'),t('예약실 · 고객센터|Reservations · Customer center|预订部·客服中心')]],
+ tags:t('제안 실행과제 상품 가격 판매구조 매니저교육 운영 설문개선|actions product price sales-timing manager-training operations next-survey|建议 执行事项 产品 价格 销售节奏 经理培训 运营 问卷改进')},
+{id:'end',end:true,nav:t('마무리|Close|结束')}
+];}
+
+/* ---------- renderers ---------- */
+const P1=v=>Number(v).toFixed(1);
+const cnt=(v,base)=>base?` · ${t('약|about|约')} ${Math.round(v*base/100)}${t('명| people|人')} / ${base}${t('명| people|人')}`:'';
+const ta=s=>esc(s).replace(/\n/g,'&#10;');
+function bars(b){const mx=Math.max(b.max,...b.rows.map(r=>r[1]));b={...b,max:mx};return b.rows.map(([l,v,f,ref])=>{const u=b.unit??'%';let tip=`${l}\n${(b.dec===0?v:v.toFixed(b.dec??1))}${u}`;if(u==='%')tip+=cnt(v,b.base);else if(b.base&&b.dec===0)tip+=` · ${t('참여자의|of attendees|占参与者')} ${(v/b.base*100).toFixed(1)}%`;if(ISR()&&ref!=null)tip+=`\n${t('전체|All|全部')} ${b.dec===0?ref:ref.toFixed(b.dec??1)}${u} · ${t('차이|diff|差异')} ${(v-ref>0?'+':'')}${(v-ref).toFixed(b.dec??1)}${u==='%'?'%p':''}`;return `<div class="cbar ${f||''}" tabindex="0" data-tip="${ta(tip)}"><span>${esc(l)}</span><div class="b"><i style="width:${(v/b.max*100).toFixed(1)}%"></i></div><span class="n num">${v.toFixed(b.dec??1)}${b.unit??'%'}</span></div>`;}).join('');}
+function pairs(b){const mx=Math.max(b.max,...b.rows.map(r=>Math.max(r[1],r[2])));b={...b,max:mx};return `<div class="legend">${b.legend.map(([n,c])=>`<span><i style="background:var(${c==='a'?'--bar-muted':c==='m'?'--bar-2':'--blue'})"></i>${esc(n)}</span>`).join('')}</div>`+b.rows.map(([l,a,c])=>`<div class="cmp" tabindex="0" data-tip="${ta(`${l}\n${b.legend[0][0]} ${P1(a)}%${cnt(a,b.baseA)}\n${b.legend[1][0]} ${P1(c)}%${cnt(c,b.base)}\n${t('차이|Difference|差异')} ${c-a>0?'+':''}${(c-a).toFixed(1)}%p`)}"><span>${esc(l)}</span><div class="bars"><i class="${b.cls[0]}" style="width:${(a/b.max*100).toFixed(1)}%"></i><i class="${b.cls[1]}" style="width:${(c/b.max*100).toFixed(1)}%"></i></div><span class="n num">${a.toFixed(1)} · <b>${c.toFixed(1)}</b></span></div>`).join('');}
+function table(b){return `<div class="tw"><table class="num"><thead><tr>${b.head.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${b.rows.map((r,i)=>`<tr class="${(b.hl||[]).includes(i)?'hl':''}">${r.map((c,j)=>Array.isArray(c)?`<td data-tip="${ta(String(r[0]).replace(/<[^>]+>/g,'')+'\n'+b.head[j]+': '+c[0])}"><span class="wow ${c[1]}">${c[0]}</span></td>`:`<td class="${j&&j<3&&b.head.length>4&&c==='–'?'muted':''}"${j&&c!=='–'?` data-tip="${ta(String(r[0]).replace(/<[^>]+>/g,'')+'\n'+b.head[j]+': '+String(c).replace(/<[^>]+>/g,''))}"`:''}>${j?c:esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;}
+function months(b){return `<div class="cols">${b.vals.map((v,i)=>`<div tabindex="0" data-tip="${ta(`${M(i)} ${t('출발 선호|departure|出发偏好')}\n${P1(v)}%${cnt(v,b.base)}${ISR()?`\n${t('전체|All|全部')} ${P1(V0('months')[i])}%`:''}`)}"><b class="num">${Math.round(v)}</b><i class="${[0,1,11].includes(i)?'hl':i===7?'alt':''}" style="height:${(v/55*140).toFixed(0)}px"></i><span>${M(i)}</span></div>`).join('')}</div><div class="mini">${b.mini.map(([v,l])=>`<div><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('')}</div>`;}
+function list(b){return `<ul class="list">${b.items.map(([p,x])=>`<li><span class="pill">${esc(p)}</span><span>${esc(x)}</span></li>`).join('')}</ul>`;}
+function line(b){const W=520,H=250,l=36,r=74,tp=16,bt=30;const n=b.cats.length;const x=i=>l+i*(W-l-r)/(n-1),y=v=>tp+(1-v/b.max)*(H-tp-bt);const cs=getComputedStyle(document.documentElement);let s='';
+  for(let g=0;g<=b.max;g+=20)s+=`<line class="grid-l" x1="${l}" x2="${W-r}" y1="${y(g)}" y2="${y(g)}"/><text class="t-muted" x="${l-8}" y="${y(g)+4}" text-anchor="end">${g}</text>`;
+  b.cats.forEach((c,i)=>s+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${esc(c)}</text>`);
+  b.series.forEach(([nm,vals,col,lab])=>{const c=cs.getPropertyValue(col).trim();s+=`<polyline fill="none" stroke="${c}" stroke-width="2.5" points="${vals.map((v,i)=>x(i)+','+y(v)).join(' ')}"/>`;
+    vals.forEach((v,i)=>{const pv=i?vals[i-1]:null;s+=`<circle cx="${x(i)}" cy="${y(v)}" r="${i===n-1?6:4.5}" fill="${c}" tabindex="0" data-tip="${ta(`${nm} · ${b.cats[i]}\n${v.toFixed(1)}%${pv!=null?`\n${t('이전 대비|vs previous|较上期')} ${v-pv>0?'+':''}${(v-pv).toFixed(1)}%p`:''}`)}"/>`;if(lab)s+=`<text class="t-strong" x="${x(i)}" y="${lab===2?y(v)+18:y(v)-9}" text-anchor="middle">${v.toFixed(1)}</text>`;});
+    s+=`<text class="t-strong" x="${W-r+8}" y="${y(vals[n-1])+4}">${esc(nm)}</text>`;});
+  return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(b.title)}">${s}</svg>`;}
+const RG={"n": [253, 57, 47, 86, 42, 13, 8], "sat": [4.15, 4.26, 4.15, 4.13, 4.24, 3.62, 4.12], "rebook": [4.29, 4.53, 4.43, 4.23, 4.24, 3.69, 3.75], "ovs_use": [65.6, 73.7, 74.5, 58.1, 64.3, 38.5, 87.5], "lux": [30.8, 33.3, 29.8, 30.2, 28.6, 23.1, 50.0], "golftel": [25.7, 21.1, 23.4, 25.6, 33.3, 30.8, 25.0], "free": [16.6, 17.5, 29.8, 12.8, 11.9, 15.4, 0.0], "japan": [35.2, 40.4, 38.3, 26.7, 42.9, 38.5, 25.0], "sea": [44.3, 42.1, 44.7, 47.7, 35.7, 46.2, 62.5], "bud150": [54.5, 56.1, 59.6, 60.5, 38.1, 38.5, 62.5], "nonmem": [39.5, 22.8, 40.4, 53.5, 28.6, 53.8, 37.5], "price": [31.2, 28.1, 31.9, 27.9, 35.7, 53.8, 25.0], "comp": [22.1, 29.8, 19.1, 26.7, 11.9, 7.7, 12.5], "wtp_hotel": [37.2, 33.3, 29.8, 30.2, 59.5, 38.5, 62.5], "tl_book": [49.4, 56.1, 53.2, 48.8, 50.0, 7.7, 50.0], "lead1m": [37.2, 42.1, 29.8, 27.9, 59.5, 46.2, 12.5], "kakao": [62.8, 61.4, 72.3, 66.3, 52.4, 46.2, 62.5], "app": [26.1, 29.8, 29.8, 19.8, 28.6, 30.8, 25.0], "ICN": [60.9, 94.7, 100.0, 54.7, 2.4, 0.0, 62.5], "PUS": [29.6, 1.8, 0.0, 30.2, 97.6, 46.2, 12.5], "MWX": [4.7, 0.0, 0.0, 14.0, 0.0, 0.0, 0.0], "female": [31.6, 21.1, 36.2, 27.9, 45.2, 38.5, 37.5], "event": [17.0, 12.3, 19.1, 18.6, 21.4, 7.7, 12.5], "freq2": [64.4, 71.9, 78.7, 58.1, 54.8, 53.8, 62.5]};
+let REGSEL=0;
+const RD={"n": [253, 57, 47, 86, 42, 13, 8], "sat2": [79.4, 89.5, 76.6, 79.1, 73.8, 69.2, 75.0], "nu": [166, 42, 35, 50, 27, 5, 7], "nnu": [87, 15, 12, 36, 15, 8, 1], "npart": [43, 7, 9, 16, 9, 1, 1], "sat": [4.15, 4.26, 4.15, 4.13, 4.24, 3.62, 4.12], "rebook2": [82.6, 94.7, 85.1, 79.1, 78.6, 61.5, 75.0], "rec2": [78.3, 89.5, 78.7, 79.1, 71.4, 46.2, 75.0], "dom2": [77.0, 83.0, 78.0, 78.8, 71.1, 54.5, 71.4], "ovsplan": [75.9, 84.2, 83.0, 75.6, 57.1, 69.2, 87.5], "nonmem": [39.5, 22.8, 40.4, 53.5, 28.6, 53.8, 37.5], "age": [[2.4, 15.8, 52.6, 27.7, 1.6], [3.5, 12.3, 57.9, 22.8, 3.5], [2.1, 21.3, 46.8, 27.7, 2.1], [1.2, 11.6, 55.8, 30.2, 1.2], [4.8, 14.3, 47.6, 33.3, 0.0], [0.0, 38.5, 38.5, 23.1, 0.0], [0.0, 25.0, 62.5, 12.5, 0.0]], "male": [68.4, 78.9, 63.8, 72.1, 54.8, 61.5, 62.5], "a5060": [80.2, 80.7, 74.5, 86.0, 81.0, 61.5, 75.0], "usat": [[4.31, 3.86, 4.13, 3.64, 80.7, 52.9], [4.29, 4.2, 4.21, 3.67, 83.3, 60.0], [4.37, 3.5, 4.14, 3.5, 80.0, 33.3], [4.32, 3.86, 4.14, 3.78, 84.0, 61.1], [4.41, 3.93, 4.22, 3.47, 81.5, 40.0], [3.8, 3.5, 3.6, 3.38, 40.0, 50.0], [4.0, 5.0, 3.43, 5.0, 71.4, 100.0]], "style": [[30.8, 25.7, 19.0, 16.6, 5.9], [33.3, 21.1, 21.1, 17.5, 7.0], [29.8, 23.4, 8.5, 29.8, 8.5], [30.2, 25.6, 23.3, 12.8, 4.7], [28.6, 33.3, 19.0, 11.9, 2.4], [23.1, 30.8, 23.1, 15.4, 7.7], [50.0, 25.0, 12.5, 0.0, 12.5]], "months": [[51.0, 41.9, 12.6, 5.5, 9.5, 2.8, 6.7, 19.0, 3.6, 11.9, 9.1, 38.7], [54.4, 47.4, 8.8, 5.3, 10.5, 3.5, 5.3, 21.1, 5.3, 10.5, 7.0, 45.6], [53.2, 40.4, 17.0, 2.1, 12.8, 0.0, 2.1, 17.0, 4.3, 8.5, 8.5, 36.2], [54.7, 43.0, 14.0, 5.8, 3.5, 4.7, 8.1, 19.8, 3.5, 7.0, 8.1, 43.0], [38.1, 31.0, 11.9, 7.1, 11.9, 0.0, 9.5, 19.0, 0.0, 21.4, 11.9, 26.2], [38.5, 30.8, 15.4, 15.4, 23.1, 7.7, 7.7, 15.4, 0.0, 30.8, 23.1, 30.8], [62.5, 75.0, 0.0, 0.0, 12.5, 0.0, 12.5, 12.5, 12.5, 12.5, 0.0, 37.5]], "mini": [[53.4, 31.6, 33.2], [40.4, 33.3, 26.3], [53.2, 36.2, 34.0], [59.3, 24.4, 38.4], [59.5, 40.5, 31.0], [46.2, 23.1, 30.8], [62.5, 37.5, 37.5]], "barrier": [[58.9, 31.2, 22.1, 15.0, 9.9, 9.1, 7.9], [56.1, 28.1, 29.8, 5.3, 10.5, 14.0, 10.5], [59.6, 31.9, 19.1, 14.9, 12.8, 17.0, 8.5], [61.6, 27.9, 26.7, 19.8, 8.1, 3.5, 8.1], [64.3, 35.7, 11.9, 16.7, 2.4, 7.1, 7.1], [46.2, 53.8, 7.7, 23.1, 30.8, 0.0, 0.0], [37.5, 25.0, 12.5, 12.5, 12.5, 12.5, 0.0]], "wtp": [[58.5, 37.2, 26.9, 15.0, 12.6, 12.3, 4.7], [64.9, 33.3, 22.8, 22.8, 17.5, 7.0, 1.8], [59.6, 29.8, 31.9, 23.4, 6.4, 10.6, 4.3], [52.3, 30.2, 30.2, 11.6, 15.1, 14.0, 7.0], [61.9, 59.5, 19.0, 4.8, 11.9, 9.5, 7.1], [61.5, 38.5, 30.8, 0.0, 7.7, 30.8, 0.0], [50.0, 62.5, 25.0, 25.0, 0.0, 25.0, 0.0]], "book": [[[59.6, 29.9], [7.8, 17.2], [8.4, 16.1], [6.6, 9.2], [6.6, 11.5], [4.2, 8.0]], [[66.7, 26.7], [7.1, 26.7], [4.8, 0.0], [2.4, 13.3], [4.8, 6.7], [4.8, 20.0]], [[65.7, 16.7], [0.0, 16.7], [5.7, 25.0], [11.4, 16.7], [5.7, 8.3], [2.9, 0.0]], [[58.0, 36.1], [10.0, 16.7], [12.0, 22.2], [6.0, 8.3], [8.0, 5.6], [4.0, 8.3]], [[59.3, 33.3], [11.1, 6.7], [7.4, 13.3], [3.7, 0.0], [7.4, 33.3], [7.4, 0.0]], [[0.0, 12.5], [20.0, 25.0], [20.0, 12.5], [0.0, 12.5], [20.0, 12.5], [0.0, 12.5]], [[42.9, 100.0], [14.3, 0.0], [14.3, 0.0], [28.6, 0.0], [0.0, 0.0], [0.0, 0.0]]], "leaddom": [[30.4, 38.7, 26.1, 4.7], [22.8, 35.1, 36.8, 5.3], [25.5, 46.8, 19.1, 8.5], [25.6, 44.2, 26.7, 3.5], [50.0, 31.0, 16.7, 2.4], [61.5, 15.4, 15.4, 7.7], [12.5, 37.5, 50.0, 0.0]], "leadovs": [[10.3, 26.9, 40.7, 22.1], [12.3, 29.8, 38.6, 19.3], [4.3, 25.5, 46.8, 23.4], [7.0, 20.9, 43.0, 29.1], [19.0, 40.5, 28.6, 11.9], [23.1, 23.1, 38.5, 15.4], [0.0, 12.5, 62.5, 25.0]], "affil": [[52.2, 75.5, 17.0, 43, 83.7], [54.4, 80.7, 22.8, 7, 71.4], [70.2, 68.1, 21.3, 9, 88.9], [47.7, 77.9, 16.3, 16, 87.5], [47.6, 81.0, 9.5, 9, 77.8], [23.1, 46.2, 7.7, 1, 100.0], [50.0, 75.0, 12.5, 1, 100.0]], "events": [[16, 10, 9, 7, 6, 6, 6, 5], [3, 0, 0, 0, 0, 1, 1, 0], [3, 4, 1, 2, 0, 2, 0, 0], [3, 5, 5, 3, 5, 2, 4, 4], [6, 0, 3, 2, 0, 0, 0, 0], [1, 1, 0, 0, 0, 1, 0, 1], [0, 0, 0, 0, 1, 0, 1, 0]], "evsat": [[41.9, 32.6, 27.9, 20.9, 20.9, 11.6], [14.3, 57.1, 14.3, 14.3, 28.6, 28.6], [77.8, 33.3, 44.4, 0.0, 0.0, 11.1], [37.5, 18.8, 25.0, 31.2, 18.8, 12.5], [44.4, 33.3, 22.2, 22.2, 33.3, 0.0], [0.0, 100.0, 100.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 100.0, 100.0, 0.0]], "chnow": [[62.8, 26.1, 24.9, 18.6, 16.6, 15.0, 7.9], [61.4, 29.8, 24.6, 29.8, 15.8, 12.3, 3.5], [72.3, 29.8, 23.4, 12.8, 29.8, 12.8, 6.4], [66.3, 19.8, 24.4, 18.6, 12.8, 12.8, 14.0], [52.4, 28.6, 28.6, 14.3, 14.3, 23.8, 4.8], [46.2, 30.8, 30.8, 0.0, 7.7, 30.8, 0.0], [62.5, 25.0, 12.5, 25.0, 12.5, 0.0, 12.5]], "chwant": [[69.6, 28.5, 25.3, 19.4, 18.2, 14.2, 2.8], [73.7, 35.1, 21.1, 31.6, 17.5, 10.5, 0.0], [70.2, 29.8, 23.4, 12.8, 29.8, 19.1, 6.4], [72.1, 24.4, 31.4, 19.8, 14.0, 11.6, 4.7], [61.9, 26.2, 19.0, 14.3, 21.4, 11.9, 0.0], [53.8, 30.8, 38.5, 7.7, 7.7, 38.5, 0.0], [75.0, 25.0, 12.5, 12.5, 0.0, 12.5, 0.0]], "budget": [[6.3, 37.5, 35.6, 11.5, 7.5], [3.5, 38.6, 29.8, 17.5, 8.8], [8.5, 29.8, 48.9, 4.3, 6.4], [3.5, 34.9, 39.5, 15.1, 5.8], [14.3, 45.2, 28.6, 2.4, 7.1], [7.7, 53.8, 23.1, 15.4, 0.0], [0.0, 37.5, 12.5, 12.5, 37.5]], "theme": [[47.4, 37.9, 23.7, 22.1, 15.8], [56.1, 54.4, 19.3, 28.1, 15.8], [46.8, 36.2, 23.4, 19.1, 8.5], [46.5, 34.9, 26.7, 20.9, 14.0], [38.1, 26.2, 23.8, 21.4, 26.2], [46.2, 23.1, 15.4, 23.1, 7.7], [50.0, 50.0, 37.5, 12.5, 37.5]], "dest": [[44.3, 35.2], [42.1, 40.4], [44.7, 38.3], [47.7, 26.7], [35.7, 42.9], [46.2, 38.5], [62.5, 25.0]]};
+const V=k=>RD[k][REGSEL], V0=k=>RD[k][0];
+const ISR=()=>REGSEL>0;
+const RN=()=>[t('전체|All|全部'),t('서울|Seoul|首尔'),t('경기/인천|Gyeonggi/Incheon|京畿/仁川'),t('광주/전라|Gwangju/Jeolla|光州/全罗'),t('부산/울산/경남|Busan/Gyeongnam|釜山/庆南'),t('대구/경북|Daegu/Gyeongbuk|大邱/庆北'),t('대전/충청|Daejeon/Chungcheong|大田/忠清')][REGSEL];
+const Z=(labels,vals,flags)=>{const k=typeof vals==='string'?vals:null;const v=k?V(k):vals;const r=k?V0(k):null;return labels.map((l,i)=>[l,v[i],(flags||[])[i],r?r[i]:null]);};
+const ZP=(labels,a,b)=>labels.map((l,i)=>[l,a[i],b[i]]);
+const DL=(k,score,idx)=>{if(!ISR())return '';const g=x=>idx==null?x:x[idx];const x=g(V(k))-g(V0(k));const th=score?0.2:8;const c=Math.abs(x)<th?'fl':(x>0?'up':'dn');return `<span class="wow ${c}">${t('전체 대비|vs all|较整体')} ${x>0?'+':x<0?'−':'±'}${Math.abs(x).toFixed(score?2:1)}${score?'':'%p'}</span> `;};
+const RLEG=()=>[[t('전체|All|全部'),'a'],[RN(),'b']];
+function region(b){const names=[t('전체|All|全部'),t('서울|Seoul|首尔'),t('경기/인천|Gyeonggi/Incheon|京畿/仁川'),t('광주/전라|Gwangju/Jeolla|光州/全罗'),t('부산/울산/경남|Busan/Gyeongnam|釜山/庆南'),t('대구/경북*|Daegu/Gyeongbuk*|大邱/庆北*'),t('대전/충청*|Daejeon/Chungcheong*|大田/忠清*')];
+  const i=REGSEL, d=k=>RG[k][i], a=k=>RG[k][0];
+  const dl=(k,score)=>{if(!i)return '';const x=d(k)-a(k);const th=score?0.2:8;const c=Math.abs(x)<th?'fl':(x>0?'up':'dn');return `<span class="wow ${c}">${x>0?'+':x<0?'−':'±'}${Math.abs(x).toFixed(score?2:1)}${score?'':'%p'}</span>`;};
+  const K=[[t('응답자|Respondents|受访者'),d('n'),t('명| |人'),i?`<span class="wow fl">${t('전체의|of all|占整体')} ${(d('n')/a('n')*100).toFixed(1)}%</span>`:''],[t('전반 만족|Overall satisfaction|整体满意度'),d('sat').toFixed(2),t('점|/5|分'),dl('sat',1)],[t('재이용 의향|Rebook intent|再预订意向'),d('rebook').toFixed(2),t('점|/5|分'),dl('rebook',1)],[t('해외 이용률|Overseas usage|海外使用率'),d('ovs_use').toFixed(1),'%',dl('ovs_use')]];
+  let h=`<div class="rtabs" role="tablist">${names.map((n,j)=>`<button type="button" role="tab" aria-selected="${j===i}" data-r="${j}">${esc(n)}<small class="num">${RG.n[j]}</small></button>`).join('')}</div>`;
+  h+=`<div class="grid kpis">${K.map(([l,v,u,x])=>`<div class="kpi" tabindex="0" data-tip="${ta(`${names[i]} · ${l}\n${v}${u}`)}"><div class="l">${esc(l)}</div><div class="v num">${v}<small>${esc(u)}</small></div><div class="d">${x||t('전체 기준|Baseline|整体基准')}</div></div>`).join('')}</div>`;
+  const ins=b.insights[i];h+=`<div class="card rins"><h3>${esc(names[i])} · ${t('특징|What stands out|特点')}</h3><ul class="list">${ins.map(([p,x])=>`<li><span class="pill">${esc(p)}</span><span>${esc(x)}</span></li>`).join('')}</ul></div>`;
+  const rows=[['sat',t('전반 만족 (점)|Overall satisfaction (/5)|整体满意度（分）'),1],['rebook',t('재이용 의향 (점)|Rebook intent (/5)|再预订意向（分）'),1],['ovs_use',t('해외 이용률|Overseas usage|海外使用率')],['freq2',t('연 2회 이상 해외 골프|Golf abroad 2+ times a year|每年出国打球2次以上')],['lux',t('스타일 · 럭셔리|Style · luxury|类型·豪华')],['golftel',t('스타일 · 골프텔|Style · golftel|类型·球场酒店')],['free',t('스타일 · 자유골프|Style · free-style|类型·自由高尔夫')],['japan',t('희망 지역 · 일본|Destination · Japan|目的地·日本')],['sea',t('희망 지역 · 동남아|Destination · SE Asia|目的地·东南亚')],['bud150',t('예산 150만원 초과|Budget over ₩1.5M|预算超150万')],['nonmem',t('비회원 동반 할인 요구|Companion discount request|同伴折扣诉求')],['price',t('장벽 · 가격|Barrier · price|障碍·价格')],['comp',t('장벽 · 동반자|Barrier · companions|障碍·同伴')],['wtp_hotel',t('호텔 등급 추가 지불|Pay more for hotel|愿为酒店升级付费')],['tl_book',t('주 예약 경로 · 투어링스|Books mainly with Tourlinks|主要通过Tourlinks预订')],['lead1m',t('해외 문의 1개월 이내|Overseas enquiry within a month|海外1个月内咨询')],['kakao',t('정보 · 카카오톡|Info · KakaoTalk|信息·KakaoTalk')],['app',t('정보 · PLK 앱|Info · PLK app|信息·PLK应用')],['event',t('올해 행사 참여|Event attendance this year|今年参加活动')],['female',t('여성 응답자|Female respondents|女性受访者')],['ICN',t('공항 · 인천|Airport · Incheon|机场·仁川')],['PUS',t('공항 · 김해|Airport · Gimhae|机场·金海')],['MWX',t('공항 · 무안|Airport · Muan|机场·务安')]];
+  h+=`<div class="card"><h3>${t('권역별 주요 지표|Key indicators by region|各地区主要指标')}</h3><span class="pill">${t('파랑 = 전체보다 높음 · 주황 = 낮음 (±8%p, 점수 ±0.2 이상) · * 표본 15명 미만|Blue = above all, orange = below (±8pt or ±0.2) · * fewer than 15 responses|蓝=高于整体 · 橙=低于整体（±8%p或±0.2分）· *样本少于15')}</span>
+   <div class="tw"><table class="num rmx"><thead><tr><th>${t('지표|Indicator|指标')}</th>${names.map((n,j)=>`<th class="${j===i?'cur':''}">${esc(n)}</th>`).join('')}</tr></thead><tbody>${rows.map(([k,l,sc])=>`<tr><td>${esc(l)}</td>${RG[k].map((v,j)=>{const x=v-RG[k][0];const th=sc?0.2:8;const c=j&&Math.abs(x)>=th?(x>0?'hi':'lo'):'';return `<td class="${c} ${j===i?'cur':''}" data-tip="${ta(`${l} · ${names[j]} (${RG.n[j]}${t('명| people|人')})\n${sc?v.toFixed(2):v.toFixed(1)+'%'}${sc?'':cnt(v,RG.n[j]).replace(' · ','\n')}\n${t('전체|All|全部')} ${sc?RG[k][0].toFixed(2):RG[k][0].toFixed(1)+'%'} · ${t('차이|diff|差异')} ${x>0?'+':''}${x.toFixed(sc?2:1)}${sc?'':'%p'}`)}">${sc?v.toFixed(2):v.toFixed(1)}</td>`;}).join('')}</tr>`).join('')}</tbody></table></div></div>`;
+  return h;}
+const R={bars,pairs,table,months,list,line,region};
+
+function render(){const U=UI();const D=C();const main=$('main');let html='';let pg=0;
+  D.forEach((s,i)=>{
+    if(s.cover){html+=`<section class="slide cover" id="${s.id}" data-dark="1" data-title="${esc(s.nav)}" data-tags=""><div class="wrap"><div>
+      <div class="eyebrow">${t('TOURLINKS · 고객 조사|TOURLINKS · CUSTOMER SURVEY|TOURLINKS · 客户调研')}</div>
+      <h1>${t('2026 하반기<br>설문 분석 보고|2026 H2<br>Survey Analysis|2026下半年<br>问卷分析报告')}<span class="dot">.</span></h1>
+      <p class="sub">${t('PLK 회원 · 영업 매니저 설문과 2024~2026 시계열 비교|PLK member and sales-manager surveys, with 2024–2026 trends|PLK会员·销售经理问卷及2024~2026时间序列比较')}</p>
+      <div class="meta"><span>${t('회원 10.13~10.22|Members Oct 13–22|会员10.13~10.22')}</span><span>${t('매니저 10.07~10.28|Managers Oct 7–28|经理10.07~10.28')}</span><span>${t('비교 24상 · 24하 · 25상|Compared with H1 24 · H2 24 · H1 25|对比24上·24下·25上')}</span></div></div>
+      <div class="hero"><div class="l">${t('유효 응답|Valid responses|有效问卷')}</div><div class="v num">253<small>${t('명 + 매니저 63명| members + 63 managers|份 + 经理63份')}</small></div>
+      <div class="l">${t('회원 응답자 추이|Member respondents over time|会员受访者趋势')}</div>
+      ${[[0,220,75],[1,283,97],[2,292,100],[3,253,87]].map(([k,v,w])=>`<div class="yr ${k===3?'now':''}"><span>${P()[k]}</span><div class="b"><i style="width:${w}%"></i></div><span class="n num">${v}</span></div>`).join('')}
+      <div class="mgr"><div class="l">${t('영업 매니저 응답|Sales manager responses|销售经理问卷')}</div><div class="mv num">63<small>${t('명 · 10.07~10.28 · 10/29 업데이트| · Oct 7–28 · updated Oct 29|份 · 10.07~10.28 · 10/29更新')}</small></div>
+      <div class="l" style="margin-top:6px">${t('소속 지역|By branch region|所属地区')}</div>
+      ${[[t('수도권|Capital|首都圈'),24],[t('부산/경남|Busan/Gyeongnam|釜山/庆南'),19],[t('광주/전라|Gwangju/Jeolla|光州/全罗'),10],[t('대구/경북|Daegu/Gyeongbuk|大邱/庆北'),10]].map(([n,v])=>`<div class="yr m"><span>${n}</span><div class="b"><i style="width:${(v/24*100).toFixed(0)}%"></i></div><span class="n num">${v}</span></div>`).join('')}
+      <div class="l" style="margin-top:8px">${t('50대 32 · 40대 23 · 60대 7 · 30대 이하 1 / 남 38 · 여 25|50s 32 · 40s 23 · 60s 7 · under 40 1 / men 38 · women 25|50多岁32 · 40多岁23 · 60多岁7 · 30多岁及以下1 / 男38 · 女25')}</div></div></div></div>
+      <div class="date num">2026.10.26</div></section>`;return;}
+    if(s.end){html+=`<section class="slide end" id="${s.id}" data-dark="1" data-title="${esc(s.nav)}" data-tags=""><div class="wrap"><img src="${LOGO}" alt="TOURLINKS"><h2>${t('감사합니다|Thank you|谢谢')}<span class="dot">.</span></h2></div></section>`;return;}
+    pg++;
+    const rv=ISR()?(s.member?`<div class="rview">${t('현재 보기|Viewing|当前查看')}: <b>${esc(RN())} ${RD.n[REGSEL]}${t('명||人')}</b> · ${t('그래프·KPI는 선택 지역 기준, 제목 문장은 전체 기준|charts and KPIs are for this region; headlines describe all members|图表和KPI为所选地区，标题句为整体')}</div>`:`<div class="rview all">${t('이 장은 지역 구분 없이 전체 기준입니다|This page is not split by region|本页为整体数据，不分地区')}</div>`):'';
+    let body=`<div class="sbox"><h2>${esc(s.head)}</h2><ul>${s.lines.map(l=>`<li>${esc(l)}</li>`).join('')}</ul>${rv}</div>`;
+    if(s.kpis)body+=`<div class="grid kpis">${s.kpis.map(([l,v,u,d,w])=>`<div class="kpi ${w||''}" tabindex="0" data-tip="${ta(`${l}\n${v}${u}${s.member?`\n${t('기준|Base|基准')}: ${RN()} ${RD.n[REGSEL]}${t('명| people|人')}`:''}\n${String(d).replace(/<[^>]+>/g,'').trim()}`)}"><div class="l">${esc(l)}</div><div class="v num">${v}<small>${esc(u)}</small></div><div class="d">${d}</div></div>`).join('')}</div>`;
+    if(s.takes)body+=`<div class="grid takes">${s.takes.map(([h,p,lnk,a])=>`<div class="card take"><h3>${esc(h)}</h3><p>${esc(p)}</p><a href="#${lnk}">${esc(a)}</a></div>`).join('')}</div>`;
+    if(s.region)body+=`<div class="region-stack" id="regbox">${region(s.region)}</div>`;
+    if(s.blocks)body+=`<div class="grid cards">${s.blocks.map(b=>(s.member&&b.base==null&&b.type!=='table'&&s.id!=='sat'?(b.base=V('n'),b.baseA=!b.legend?null:(b.legend[0][0]===t('전체|All|全部')?V0('n'):(b.legend[0][0]===P()[2]?292:V('n')))):0,b)).map(b=>`<div class="card ${b.full?'full':''}"><h3>${esc(b.title)}</h3><span class="pill">${esc(b.pill)}</span>${R[b.type](b)}${b.note?`<p class="note">${esc(b.note)}</p>`:''}</div>`).join('')}</div>`;
+    if(s.acts)body+=`<div class="grid acts">${s.acts.map(([h,tg,tc,p,w])=>`<div class="card act"><div class="hd"><h3>${esc(h)}</h3><span class="tag ${tc}">${esc(tg)}</span></div><p>${esc(p)}</p><div class="who">${esc(w)}</div></div>`).join('')}</div>`;
+    body+=`<div class="foot"><div class="tags"><span>${U.tagL}</span>${s.tags.split(' ').map(x=>`<button type="button">#${esc(x)}</button>`).join('')}</div><span class="pg num">${String(pg+1).padStart(2,'0')}</span></div>`;
+    html+=`<section class="slide" id="${s.id}" data-title="${esc(s.nav)}" data-tags="${esc(s.tags)}"><div class="wrap">${body}</div></section>`;});
+  main.innerHTML=html;
+  const rb=$('regbox');if(rb){const R_=D.find(x=>x.region).region;rb.addEventListener('click',e=>{const b=e.target.closest('button[data-r]');if(!b)return;setRegion(+b.dataset.r,'regbox');});}
+  main.querySelectorAll('.foot .tags button').forEach(b=>b.addEventListener('click',()=>{q.value=b.textContent;q.focus();search();}));
+  setup();}
+
+/* ---------- navigation ---------- */
+let slides=[],cur=0;const dots=$('dots');
+function setup(){slides=[...document.querySelectorAll('.slide')];dots.replaceChildren();
+  slides.forEach((sl,i)=>{const a=document.createElement('a');a.href='#'+sl.id;a.setAttribute('aria-label',sl.dataset.title);a.innerHTML=`<span>${i+1}. ${esc(sl.dataset.title)}</span>`;dots.appendChild(a);});
+  buildIndex();update();}
+function current(){const mid=window.innerHeight*0.4;let idx=0;slides.forEach((sl,i)=>{if(sl.getBoundingClientRect().top<=mid)idx=i;});return idx;}
+function update(){if(!slides.length)return;cur=current();const sl=slides[cur];const U=UI();
+  $('hdrTitle').innerHTML=`${esc(U.prefix)}<span class="sep">:</span>${esc(sl.dataset.title)}<span class="dot">.</span>`;
+  $('count').textContent=`${cur+1} / ${slides.length}`;[...dots.children].forEach((d,i)=>d.classList.toggle('active',i===cur));
+  const h=document.documentElement.scrollHeight-window.innerHeight;$('progress').style.width=(h>0?window.scrollY/h*100:0)+'%';}
+function go(i){i=Math.max(0,Math.min(slides.length-1,i));slides[i].scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
+$('prev').addEventListener('click',()=>go(cur-1));$('next').addEventListener('click',()=>go(cur+1));
+document.addEventListener('keydown',e=>{if(e.target.closest('input,textarea,select'))return;
+  if(['ArrowDown','PageDown',' ','ArrowRight'].includes(e.key)){e.preventDefault();go(cur+1);}else if(['ArrowUp','PageUp','ArrowLeft'].includes(e.key)){e.preventDefault();go(cur-1);}
+  else if(e.key==='Home'){e.preventDefault();go(0);}else if(e.key==='End'){e.preventDefault();go(slides.length-1);}else if(e.key==='/'){e.preventDefault();q.focus();}});
+window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);
+const pb=$('presentBtn');pb.addEventListener('click',()=>{const on=document.body.classList.toggle('present');pb.textContent=on?UI().presentOff:UI().present;
+  try{if(on&&document.documentElement.requestFullscreen)document.documentElement.requestFullscreen().catch(()=>{});else if(!on&&document.fullscreenElement)document.exitFullscreen().catch(()=>{});}catch(err){}});
+document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&document.body.classList.contains('present')){document.body.classList.remove('present');pb.textContent=UI().present;}});
+
+/* ---------- element search ---------- */
+const q=$('q'),res=$('results');let sel=0,hits=[],IDX=[];
+function buildIndex(){IDX=slides.map((sl,i)=>({i,sl,title:sl.dataset.title,tags:(sl.dataset.tags||'').split(/\s+/).filter(Boolean),text:sl.innerText.replace(/\s+/g,' ')}));}
+function snippet(tx,k){const p=tx.toLowerCase().indexOf(k.toLowerCase());if(p<0)return '';const s=Math.max(0,p-24),e=Math.min(tx.length,p+k.length+36);return (s?'…':'')+esc(tx.slice(s,p))+'<mark>'+esc(tx.slice(p,p+k.length))+'</mark>'+esc(tx.slice(p+k.length,e))+(e<tx.length?'…':'');}
+function search(){const k=q.value.trim().replace(/^#/,'');if(!k){res.hidden=true;return;}const kl=k.toLowerCase();
+  hits=IDX.map(o=>{let s=0;if(o.title.toLowerCase().includes(kl))s+=5;if(o.tags.some(x=>x.toLowerCase().includes(kl)))s+=3;s+=Math.min(o.text.toLowerCase().split(kl).length-1,5);return {o,s};}).filter(h=>h.s>0).sort((a,b)=>b.s-a.s);
+  sel=0;res.innerHTML=hits.length?hits.map((h,j)=>{const tg=h.o.tags.filter(x=>x.toLowerCase().includes(kl)).map(x=>'#'+x).join(' ');return `<button type="button" data-j="${j}" class="${j===0?'sel':''}"><div class="rt"><span class="pg">${String(h.o.i).padStart(2,'0')}</span>${esc(h.o.title)}</div><div class="rs">${tg?'<mark>'+esc(tg)+'</mark> · ':''}${snippet(h.o.text,k)}</div></button>`;}).join(''):`<div class="none">"${esc(k)}"${UI().none}</div>`;res.hidden=false;}
+function pick(j){const h=hits[j];if(!h)return;res.hidden=true;q.blur();go(h.o.i);h.o.sl.classList.remove('hit');void h.o.sl.offsetWidth;h.o.sl.classList.add('hit');}
+q.addEventListener('input',search);q.addEventListener('focus',()=>{if(q.value.trim())search();});
+q.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();if(!hits.length)return;sel=(sel+(e.key==='ArrowDown'?1:-1)+hits.length)%hits.length;[...res.children].forEach((b,j)=>b.classList.toggle('sel',j===sel));}else if(e.key==='Enter'){e.preventDefault();pick(sel);}else if(e.key==='Escape'){res.hidden=true;q.blur();}});
+res.addEventListener('click',e=>{const b=e.target.closest('button[data-j]');if(b)pick(+b.dataset.j);});
+document.addEventListener('click',e=>{if(!e.target.closest('.search'))res.hidden=true;});
+
+/* ---------- hover detail ---------- */
+const tipEl=$('tip');
+function showTip(el,x,y){const s=el.getAttribute('data-tip');if(!s)return;const lines=s.split('\n');tipEl.innerHTML='<b>'+esc(lines[0])+'</b>'+(lines.length>1?'\n'+lines.slice(1).map(esc).join('\n'):'');tipEl.hidden=false;
+  const r=tipEl.getBoundingClientRect();let L=x+14,T=y+16;if(L+r.width>innerWidth-8)L=x-r.width-14;if(T+r.height>innerHeight-8)T=y-r.height-12;tipEl.style.left=Math.max(8,L)+'px';tipEl.style.top=Math.max(8,T)+'px';}
+document.addEventListener('mousemove',e=>{const el=e.target.closest&&e.target.closest('[data-tip]');if(el)showTip(el,e.clientX,e.clientY);else tipEl.hidden=true;});
+document.addEventListener('focusin',e=>{const el=e.target.closest&&e.target.closest('[data-tip]');if(el){const r=el.getBoundingClientRect();showTip(el,r.left+Math.min(r.width,160),r.bottom-8);}});
+document.addEventListener('focusout',()=>{tipEl.hidden=true;});
+document.addEventListener('touchstart',e=>{const el=e.target.closest&&e.target.closest('[data-tip]');if(el){const t0=e.touches[0];showTip(el,t0.clientX,t0.clientY);}else tipEl.hidden=true;},{passive:true});
+window.addEventListener('scroll',()=>{tipEl.hidden=true;},{passive:true});
+/* ---------- region selector ---------- */
+function buildRegbar(){const rb=$('regbar');const names=[t('전체|All|全部'),t('서울|Seoul|首尔'),t('경기/인천|Gyeonggi/Incheon|京畿/仁川'),t('광주/전라|Gwangju/Jeolla|光州/全罗'),t('부산/울산/경남|Busan/Gyeongnam|釜山/庆南'),t('대구/경북|Daegu/Gyeongbuk|大邱/庆北'),t('대전/충청|Daejeon/Chungcheong|大田/忠清')];
+  rb.innerHTML=`<span class="lbl">${t('응답 지역|Respondent region|受访地区')}</span>`+names.map((n,j)=>`<button type="button" role="tab" aria-selected="${j===REGSEL}" data-g="${j}">${esc(n)}<small class="num">${RD.n[j]}</small></button>`).join('')+`<span class="hint">${t('회원 분석 그래프·KPI가 선택 지역 기준으로 바뀝니다|Member charts and KPIs switch to the chosen region|会员分析图表和KPI切换为所选地区')}</span>`;}
+function setRegion(j,focusId){REGSEL=j;const keep=slides[cur]?slides[cur].id:null;const y=window.scrollY;const off=keep&&$(keep)?$(keep).getBoundingClientRect().top:0;render();buildRegbar();
+  if(keep&&$(keep))window.scrollTo(0,window.scrollY+$(keep).getBoundingClientRect().top-off);
+  if(focusId&&$(focusId)){const b=$(focusId).querySelector(`button[data-r="${j}"]`);if(b)b.focus({preventScroll:true});}
+  if(q.value.trim())search();try{localStorage.setItem('tl-survey-region',String(j));}catch(e){}}
+$('regbar').addEventListener('click',e=>{const b=e.target.closest('button[data-g]');if(b)setRegion(+b.dataset.g);});
+/* ---------- language ---------- */
+const sw=$('langSw');
+function setLang(l){LANG=LANGS.includes(l)?l:'ko';LI=LANGS.indexOf(LANG);document.documentElement.lang=LANG;
+  [...sw.children].forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===LANG)));
+  const U=UI();q.placeholder=U.ph;q.setAttribute('aria-label',U.ph);pb.textContent=document.body.classList.contains('present')?U.presentOff:U.present;
+  const keep=slides[cur]?slides[cur].id:null;render();buildRegbar();if(keep&&$(keep))$(keep).scrollIntoView();if(q.value.trim())search();
+  try{localStorage.setItem('tl-survey-lang',LANG);}catch(e){}}
+sw.addEventListener('click',e=>{const b=e.target.closest('button[data-lang]');if(b)setLang(b.dataset.lang);});
+const redraw=()=>{const keep=slides[cur]?slides[cur].id:null;render();if(keep&&$(keep))$(keep).scrollIntoView();};
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',redraw);
+new MutationObserver(redraw).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+
+let saved='ko';try{saved=localStorage.getItem('tl-survey-lang')||'ko';const r=+(localStorage.getItem('tl-survey-region')||0);if(r>=0&&r<7)REGSEL=r;}catch(e){}
+setLang(saved);
+const hh=location.hash.slice(1);if(hh&&$(hh))setTimeout(()=>$(hh).scrollIntoView(),50);
+})();
+</script>
